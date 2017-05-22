@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!-- 空间布局  -3.5 -->
+	<definition name="zoneLayout_3_5" template="/WEB-INF/views/tiles/v_3_5/topicLayout_3_5.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/v_3_5/zoneheader_3_5.jsp" />
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/v_3_5/zonefooter_3_5.jsp"/>
+	</definition>
+
+	<!-- 个人网盘页 -3.5 -->
+	<definition name="netdisk/myNetdisk_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/myDoc_new_3_5.jsp" />
+	</definition>
+	<!-- 我的教材资源 -3.5 -->
+	<definition name="netdisk/myTextbookFolder_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/myTextbookFolder_3_5.jsp" />
+	</definition>
+	<!-- 我的发布 -3.5-->
+	<definition name="netdisk/myCatalogue_new_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/myCatalogue_new_3_5.jsp" />
+	</definition>
+	<!-- 直接发布 -3.5 -->
+	<definition name="netdisk/directCatalogue_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/directCatalogue_3_5.jsp" />
+	</definition>
+	<!-- 老师打包产品 -3.5 -->
+	<definition name="netdisk/packProduct1_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/packProduct1_3_5.jsp" />
+	</definition>
+	<!-- 产品收藏和下载 -3.5 -->
+	<definition name="netdisk/proCollectAndDownLoadLog_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/procollectAndDownLoadLog_3_5.jsp" />
+	</definition>
+	<!-- 我的分享页面 -3.5 -->
+	<definition name="netdisk/myPubShare_new_3_5" extends="zoneLayout_3_5">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/v_3_5/myPubShare_new_3_5.jsp" />
+	</definition>
+	<!-- 班级网盘资源 -3.5 -->
+	<definition name="netdisk/classNetdisk_3_5" template="/WEB-INF/views/resource/v_3_5/classNetdisk_3_5.jsp"/>
+	<!-- 班级网盘资源APP -3.5 -->
+	<definition name="netdisk/classNetdiskApp_3_5" template="/WEB-INF/views/resource/v_3_5/classNetdiskApp_3_5.jsp"/>
+	<!-- 班级网盘共享 -3.5 -->
+	<definition name="netdisk/classResourceDetail_3.5" template="/WEB-INF/views/resource/v_3_5/classResourceDetail_3.5.jsp"/>
+	<!-- 学校资源库产品列表页-->
+	<definition name="resportal/resource/schoolProlist_3.5" template="/WEB-INF/views/resource/v_3_5/schoolProlist_3.5.jsp"/>
+	<!-- 教育云资源(校内老师同步且审核通过的资源)-->
+	<definition name="resportal/resource/schoolYunlist_3.5" template="/WEB-INF/views/resource/v_3_5/schoolYunlist_3.5.jsp"/>
+</tiles-definitions>

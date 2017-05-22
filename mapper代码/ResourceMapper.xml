@@ -1,0 +1,1556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ResourceMapper">
+    <!-- result map -->
+    <resultMap type="Resource" id="ResourceMap">
+    	<!-- 资源信息 -->
+        <result column="RES_ID" property="resId"/>
+        <result column="TITLE" property="title"/>
+        <result column="KEYWORD" property="keyword"/>
+        <result column="INTRO" property="intro"/>
+        <result column="RES_FORM" property="resForm"/>
+        <result column="URL" property="url"/>
+        <result column="STATUS" property="status"/>
+        <result column="PERIOD_ID" property="periodId"/>
+        <result column="PERIOD_NAME" property="periodName"/>
+        <result column="SUBJECT_ID" property="subjectId"/>
+        <result column="SUBJECT_NAME" property="subjectName"/>
+        <result column="GRADE_ID" property="gradeId"/>
+        <result column="GRADE_NAME" property="gradeName"/>
+        <result column="VOLUME_ID" property="volumeId"/>
+        <result column="VOLUME_NAME" property="volumeName"/>
+        <result column="EDITION_ID" property="editionId"/>
+        <result column="EDITION_NAME" property="editionName"/>
+        <result column="TEXTBOOK_ID" property="textbookId"/>
+        <result column="TEXTBOOK_NAME" property="textbookName"/>
+        <result column="CREATOR_ID" property="creatorId"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="MODIFIER_ID" property="modifierId"/>
+        <result column="MODIFY_TIME" property="modifyTime"/>
+        <result column="COLLECTED_COUNT" property="viewCount"/>
+        <result column="VIEW_COUNT" property="viewCount"/>
+        <result column="DOWN_COUNT" property="downCount"/>
+        <result column="COMMENT_COUNT" property="commentCount"/>
+        <result column="SCORE" property="score"/>
+        <result column="TransFileStatuas" property="transFileStatuas"/>
+        <result column="METADATA_NAME" property="metadaName"/>
+        <result column="REGION_CODE" property="regionCode"/>
+        <result column="EXAM_SUBJECT_ID" property="examSubjectId"/>
+        <result column="EXAM_YEAR" property="examYear"/>
+        <result column="PLATFORM_CODE" property="platformCode"/>
+        <result column="REGION_NAME" property="regionName"/>
+        <result column="EXAM_SUBJECT_NAME" property="examSubjectName"/>
+        <result column="RES_SOURCE" property="resSource"/>
+        <result column="FORMAT_ID" property="formatId"/>
+        <result column="FORMAT_NAME" property="formatName"/>
+        <result column="LANGUAGE_ID" property="languageId"/>
+        <result column="LANGUAGE_NAME" property="languageName"/>
+        <result column="FOLDER_ID" property="folderId"/>
+        <result column="AREA_CODE" property="areaCode"/>
+        
+        <!-- 附件信息 -->
+        <result column="FID" property="fid"/>
+        <result column="FILE_ID" property="fileId"/>
+        <result column="FILE_NAME" property="fileName"/>
+        <result column="FILE_EXT" property="fileExt"/>
+        <result column="FILE_MD5" property="fileMd5"/>
+        <result column="FILE_SIZE" property="fileSize"/>
+        <result column="FILE_LENGTH" property="fileLength"/>
+        <result column="THUMBNAIL_FILE_NAME" property="thumbnailFileName"/>
+        <result column="THUMBNAIL_FILE_ID" property="thumbnailFileId"/>
+        <result column="THUMBNAIL_FILE_LENGTH" property="thumbnailFileLength"/>
+        
+        <!-- 属主信息 -->
+        <result column="USER_ID" property="userId"/>
+        <result column="ORG_ID" property="orgId"/>
+        <result column="GROUP_ID" property="groupId"/>
+        <result column="OWNER_TYPE" property="ownerType"/> 
+        <result column="OWNER_STATUS" property="ownerStatus"/>
+        <result column="PUBLIC_STATUS" property="publicStatus"/>
+        <result column="OWNER_RES_ID" property="ownerResId"/>
+        <result column="PARENT_ID" property="parentId"/>
+        <result column="ALLOW_DOWNLOAD" property="allowDownload"/>
+        <result column="IS_SHARECOURSE" property="issharecourse"/>
+        
+        <!-- CP资源信息 -->
+        <result column="CPRES_ID" property="cpresId"/>
+        <result column="CPRES_STATUS" property="cpresStatus"/>
+        <result column="APPLY_TIME" property="applyTime"/>
+        
+        <!-- 上报信息 -->
+        <result column="REPORT_ID" property="reportId"/>
+        <result column="REPORTED_ID" property="reportedId"/>
+        <result column="REPORTED_NAME" property="reportedName"/>
+        <result column="REPORTED_ORG_ID" property="reportedOrgId"/>
+        <result column="REPORTED_ORG_NAME" property="reportedOrgName"/>
+        <result column="REPORT_TIME" property="reportTime"/>
+        <result column="RECIPIENT_ID" property="recipientId"/>
+        <result column="RECIPIENT_NAME" property="recipientName"/>
+        <result column="AUDIT_STATUS" property="auditStatus"/>
+        <result column="AUDIT_DESC" property="auditDesc"/>
+        <result column="AUDIT_TIME" property="auditTime"/>
+        <result column="REPORT_TYPE" property="reportType"/>
+        
+        <!-- 社区资源信息 -->
+        <result column="RESOURCE_OWNER_TYPE" property="resourceOwnerType"/>
+        <result column="IS_RECOMMEND" property="isRecommend"/>
+        <result column="PORTALAUDITSTATUS" property="portalAuditStatus"/>
+        <result column="COMMUNITY_ID" property="communityId"/>
+        <result column="COMMUNITY_GROUP_ID" property="communityGroupId"/>
+        <result column="COMMUNITY_RESOURCE" property="communityResource"/>
+        
+        <!-- 我的发布信息 -->
+        <result column="DATA_ID" property="dataId"/>
+        <result column="CATALOGUE_TIME" property="catalogueTime"/>
+        <result column="CATALOGUE_FLAG" property="catalogueFlag"/>
+        <result column="TYPENAME" property="typeName"/>
+    </resultMap>
+         
+    <resultMap type="ResReport" id="ResReportMap">
+        <result column="PK_ID" property="pkId"/>
+        <result column="RES_ID" property="resId"/>
+        <result column="REPORTED_ID" property="reportedId"/>
+        <result column="REPORTED_NAME" property="reportedName"/>
+        <result column="REPORTED_ORG_ID" property="reportedOrgId"/>
+        <result column="REPORTED_ORG_NAME" property="reportedOrgName"/>
+        <result column="REPORT_TIME" property="reportTime"/>
+        <result column="RECIPIENT_ID" property="recipientId"/>
+        <result column="RECIPIENT_NAME" property="recipientName"/>
+        <result column="AUDIT_STATUS" property="auditStatus"/>
+        <result column="AUDIT_DESC" property="auditDesc"/>
+        <result column="AUDIT_TIME" property="auditTime"/>
+        <result column="REPORT_TYPE" property="reportType"/>
+    </resultMap>
+
+    <!-- where clause -->
+    <sql id="whereClause">
+        <where>
+            <if test="resId != null and resId != ''">
+                t1.RES_ID=#{resId}
+            </if>
+            <if test="title != null and title != ''">
+                AND t1.TITLE like '%' || #{title} || '%'
+            </if>
+            <if test="status != null and status != ''">
+                AND t1.STATUS=#{status}
+            </if>
+            <if test="periodId != null and periodId != ''">
+                AND t1.PERIOD_ID=#{periodId}
+            </if>
+            <if test="subjectId != null and subjectId != ''">
+                AND t1.SUBJECT_ID=#{subjectId}
+            </if>
+            <if test="gradeId != null and gradeId != ''">
+                AND t1.GRADE_ID=#{gradeId}
+            </if>
+            <if test="volumeId != null and volumeId != ''">
+                AND t1.VOLUME_ID=#{volumeId}
+            </if>
+            <if test="editionId != null and editionId != ''">
+                AND t1.EDITION_ID=#{editionId}
+            </if>
+            <if test="textbookId != null and textbookId != ''">
+                AND t1.TEXTBOOK_ID=#{textbookId}
+            </if>
+            <if test="ownerStatus != null and ownerStatus != ''">
+            	AND t12.STATUS=#{ownerStatus}
+            </if>
+            <if test="publicStatus != null and publicStatus != ''">
+            	AND t12.PUBLIC_STATUS=#{publicStatus}
+            </if>
+        </where>
+    </sql>
+
+    <!-- select clause -->
+    <sql id="selectClause">
+        select t1.*,
+          <if test="userId != null and userId != ''">
+		       t12.STATUS as OWNER_STATUS, t12.PUBLIC_STATUS, t12.DIR_ID as OWNER_RES_ID,
+		  </if>
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME 
+		  from T_RESOURCE t1
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		<if test="chapterId != null and chapterId != ''">
+			inner join T_RES_CHAPTER t9 on t1.RES_ID=t9.RES_ID AND t9.CHAPTER_ID in (select CHAPTER_ID from T_CHAPTER start with CHAPTER_ID=#{chapterId} connect by prior CHAPTER_ID=CHAPTER_PID)
+		</if>
+		<if test="metadataIdList != null">
+        	inner join T_RES_METADATA t10 on t1.RES_ID=10.RES_ID AND t10.METADATA_ID in
+        	<foreach collection="list" item="metadataIdList" index="index" open="(" separator="," close=")">
+        		#{metadataIdList}
+        	</foreach>
+        </if>
+        <if test="resTypeId != null and resTypeId != ''">
+        	inner join T_RESTYPE_RES t11 on t1.RES_ID=t11.RES_ID AND t11.RES_TYPE_ID=#{resTypeId}
+        </if>
+        <if test="userId != null and userId != ''">
+        	inner join T_RES_OWNER t12 on t1.RES_ID=t12.RES_ID AND t12.USER_ID=#{userId}
+        </if>
+        <if test="orgId != null and orgId != ''">
+        	inner join T_RES_OWNER t13 on t1.RES_ID=t13.RES_ID AND t13.ORG_ID=#{orgId}
+        </if>
+    </sql>
+
+    <!-- select one -->
+    <select id="selectOne" parameterType="string" resultMap="ResourceMap">
+        select t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.FILE_MD5,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t9.STATUS as TransFileStatuas,
+		       t10.EXAM_SUBJECT_NAME,
+		       t11.REGION_NAME,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME 
+		  from T_RESOURCE t1
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_TRANS_FILE t9
+		    on t1.FID = t9.FID
+		  left join T_EXAM_SUBJECT t10
+		    on t1.EXAM_SUBJECT_ID = t10.EXAM_SUBJECT_ID
+		  left join T_REGION t11
+		    on t1.REGION_CODE = t11.REGION_CODE
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+        where t1.RES_ID=#{resId}
+    </select>
+
+    <!-- select list -->
+    <select id="selectList" parameterType="Resource" resultMap="ResourceMap">
+        <include refid="selectClause"/>
+        <include refid="whereClause"/>
+    </select>
+    
+    <!-- select list by id list -->
+    <select id="selectListByIds" parameterType="java.util.List" resultMap="ResourceMap">
+    	select t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME
+		  from T_RESOURCE t1
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+    	where t1.RES_ID in
+    	<foreach collection="list" index="index" item="resIdList" open="(" separator="," close=")">
+    		#{resIdList}
+    	</foreach>
+    </select>
+    
+    <!-- select list by product code -->
+    <select id="selectListByProductCode" parameterType="string" resultMap="ResourceMap">
+    	select t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t9.EXAM_SUBJECT_NAME,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME,
+		       t16.REGION_NAME
+		  from T_RESOURCE t1
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_EXAM_SUBJECT t9
+		    on t1.EXAM_SUBJECT_ID = t9.EXAM_SUBJECT_ID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		  left join t_region t16
+		  	on t1.REGION_CODE = t16.REGION_CODE
+    	where t1.RES_ID in (select RES_ID from T_PROD_RES where PRODUCT_CODE=#{productCode})
+    </select>
+
+    <!-- select for pagination -->
+    <select id="selectForPagination" parameterType="hashmap" resultMap="ResourceMap">
+        <include refid="CommonMapper.pageStart"/>
+        <include refid="selectClause"/>
+        <include refid="whereClause"/>
+        <include refid="CommonMapper.pageEnd"/>
+    </select>
+
+    <!-- select count -->
+    <select id="selectCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectClause"/> <include refid="whereClause"/>)
+    </select>
+    
+    <!-- select owner resource -->
+    <sql id="selectOwnerResourceClause">
+    	select 
+    		   t0.DIR_ID as OWNER_RES_ID,
+    		   t0.DIR_NAME,
+    		   t0.USER_ID,
+    		   t0.ORG_ID,
+    		   t0.GROUP_ID,
+    		   t0.OWNER_TYPE,
+    		   t0.STATUS as OWNER_STATUS,
+    		   t0.PUBLIC_STATUS,
+    		   t0.RESOURCE_OWNER_TYPE,
+    		   t0.IS_RECOMMEND,
+    		   t0.PORTALAUDITSTATUS,
+    		   t0.COMMUNITY_ID,
+    		   t0.COMMUNITY_GROUP_ID,
+    		   t0.COMMUNITY_RESOURCE,
+    		   t0.PARENT_ID,
+    		   t0.ALLOW_DOWNLOAD,
+    		   t0.IS_SHARECOURSE,    		   
+    		   t1.RES_ID,
+		       t1.TITLE,
+		       t1.KEYWORD,
+		       t1.RES_FORM,
+		       t1.URL,
+		       t1.STATUS,
+		       t1.FID,
+		       t1.CREATOR_ID,
+		       t1.CREATE_TIME,
+		       t1.MODIFIER_ID,
+		       t1.Modify_Time,
+		       t1.PERIOD_ID,
+		       t1.SUBJECT_ID,
+		       t1.EDITION_ID,
+		       t1.GRADE_ID,
+		       t1.VOLUME_ID,
+		       t1.TEXTBOOK_ID,
+		       t1.VIEW_COUNT,
+		       t1.DOWN_COUNT,
+		       t1.COMMENT_COUNT,
+		       t1.SCORE,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME
+			<if test="userId != null and userId != '' and ownerType == '0'.toString()">
+        	   ,t12.PK_ID as REPORT_ID,
+    		   t12.REPORTED_ID,
+    		   t12.REPORTED_NAME,
+    		   t12.REPORTED_ORG_ID,
+    		   t12.REPORTED_ORG_NAME,
+    		   t12.REPORT_TIME,
+    		   t12.RECIPIENT_ID,
+    		   t12.RECIPIENT_NAME,
+    		   t12.AUDIT_STATUS,
+    		   t12.AUDIT_DESC,
+    		   t12.AUDIT_TIME
+        	</if>
+        	<if test="orgId != null and orgId != '' and ownerType == '2'.toString()">
+        	   ,t12.PK_ID as REPORT_ID,
+    		   t12.REPORTED_ID,
+    		   t12.REPORTED_NAME,
+    		   t12.REPORTED_ORG_ID,
+    		   t12.REPORTED_ORG_NAME,
+    		   t12.REPORT_TIME,
+    		   t12.RECIPIENT_ID,
+    		   t12.RECIPIENT_NAME,
+    		   t12.AUDIT_STATUS,
+    		   t12.AUDIT_DESC,
+    		   t12.AUDIT_TIME
+        	</if>
+		  from T_RES_OWNER t0
+		 inner join T_RESOURCE t1
+		 	on t0.RES_ID=t1.RES_ID
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		<if test="chapterId != null and chapterId != ''">
+			inner join T_RES_CHAPTER t9 on t1.RES_ID=t9.RES_ID AND t9.CHAPTER_ID in (select CHAPTER_ID from T_CHAPTER start with CHAPTER_ID=#{chapterId} connect by prior CHAPTER_ID=CHAPTER_PID)
+		</if>
+		<if test="metadataIdList != null">
+        	inner join T_RES_METADATA t10 on t1.RES_ID=t10.RES_ID AND t10.METADATA_ID in
+        	<foreach collection="metadataIdList" item="metadataIdList" index="index" open="(" separator="," close=")">
+        		#{metadataIdList}
+        	</foreach>
+        </if>
+        <if test="resTypeId != null and resTypeId != ''">
+        	inner join T_RESTYPE_RES t11 on t1.RES_ID=t11.RES_ID AND t11.RES_TYPE_ID=#{resTypeId}
+        </if>
+        <if test="userId != null and userId != '' and ownerType == '0'.toString()">
+        	left join T_RES_REPORT t12 on t0.USER_ID=t12.REPORTED_ID and t0.RES_ID=t12.RES_ID
+        </if>
+        <if test="orgId != null and orgId != '' and ownerType == '2'.toString()">
+        	left join T_RES_REPORT t12 on t0.ORG_ID=t12.REPORTED_ORG_ID and t0.RES_ID=t12.RES_ID
+        </if>
+       	<where>
+       		<if test="userId != null and userId != ''">
+       			t0.USER_ID=#{userId}
+       		</if>
+       		<if test="orgId != null and orgId != ''">
+       			AND t0.ORG_ID=#{orgId}
+       		</if>
+       		<if test="groupId != null and groupId != ''">
+       			AND t0.GROUP_ID=#{groupId}
+       		</if>
+       		<if test="ownerType != null and ownerType != ''">
+       			AND t0.OWNER_TYPE=#{ownerType}
+       		</if>
+       		<if test="ownerStatus != null and ownerStatus != ''">
+            	AND t0.STATUS=#{ownerStatus}
+            </if>
+            <if test="publicStatus != null and publicStatus != ''">
+            	AND t0.PUBLIC_STATUS=#{publicStatus}
+            </if>
+            <if test="communityResource != null and communityResource != ''">
+            	AND t0.COMMUNITY_RESOURCE=#{communityResource}
+            </if>
+            <if test="issharecourse != null and issharecourse != ''">
+					AND t0.IS_SHARECOURSE=#{issharecourse}
+			</if>
+            <if test="isRecommend != null and isRecommend != ''">
+            	AND t0.IS_RECOMMEND=#{isRecommend}
+            </if>
+            <if test="resourceOwnerType != null and resourceOwnerType != ''">
+            	AND t0.RESOURCE_OWNER_TYPE=#{resourceOwnerType}
+            </if>
+            <if test="portalAuditStatus != null and portalAuditStatus != ''">
+            	AND t0.PORTALAUDITSTATUS=#{portalAuditStatus}
+            </if>
+            <if test="communityId != null and communityId != ''">
+            	AND t0.COMMUNITY_ID=#{communityId}
+            </if>
+            <if test="communityGroupId != null and communityGroupId != ''">
+            	AND t0.COMMUNITY_GROUP_ID=#{communityGroupId}
+            </if>
+            <if test="parentId != null and parentId != ''">
+            	AND t0.PARENT_ID=#{parentId}
+            </if>
+            <if test="allowDownload != null and allowDownload != ''">
+            	AND t0.ALLOW_DOWNLOAD=#{allowDownload}
+            </if>
+            <if test="resId != null and resId != ''">
+                AND t1.RES_ID=#{resId}
+            </if>
+            <if test="title != null and title != ''">
+                AND t1.TITLE like '%' || #{title} || '%'
+            </if>
+            <if test="status != null and status != ''">
+                AND t1.STATUS=#{status}
+            </if>
+            <if test="periodId != null and periodId != ''">
+                AND t1.PERIOD_ID=#{periodId}
+            </if>
+            <if test="subjectId != null and subjectId != ''">
+                AND t1.SUBJECT_ID=#{subjectId}
+            </if>
+            <if test="gradeId != null and gradeId != ''">
+                AND t1.GRADE_ID=#{gradeId}
+            </if>
+            <if test="volumeId != null and volumeId != ''">
+                AND t1.VOLUME_ID=#{volumeId}
+            </if>
+            <if test="editionId != null and editionId != ''">
+                AND t1.EDITION_ID=#{editionId}
+            </if>
+            <if test="textbookId != null and textbookId != ''">
+                AND t1.TEXTBOOK_ID=#{textbookId}
+            </if>
+        </where>
+        <if test="orderBy != null and orderBy != ''">
+        	order by ${orderBy}
+        </if>
+    </sql>
+    
+    <!-- select owner resource for pagination -->
+    <select id="selectOwnerResourceForPagination" parameterType="hashmap" resultMap="ResourceMap">
+        <include refid="CommonMapper.pageStart"/>
+        <include refid="selectOwnerResourceClause"/>
+        <include refid="CommonMapper.pageEnd"/>
+    </select>
+
+    <!-- select owner resource count -->
+    <select id="selectOwnerResourceCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectOwnerResourceClause"/>)
+    </select>
+    
+    <!-- select CP res clause -->
+    <sql id="selectCpResClause">
+    	select t0.STATUS as CPRES_STATUS,
+    		   t0.PK_ID as CPRES_ID,
+    		   t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME
+		  from T_CPRES_STATUS t0 inner join T_RESOURCE t1 on t0.RES_ID=t1.RES_ID
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		<if test="chapterId != null and chapterId != ''">
+			inner join T_RES_CHAPTER t9 on t1.RES_ID=t9.RES_ID AND t9.CHAPTER_ID in (select CHAPTER_ID from T_CHAPTER start with CHAPTER_ID=#{chapterId} connect by prior CHAPTER_ID=CHAPTER_PID)
+		</if>
+		<where>
+            <if test="title != null and title != ''">
+                AND t1.TITLE like '%' || #{title} || '%'
+            </if>
+            <if test="cpresStatus != null and cpresStatus != ''">
+                AND t0.STATUS=#{cpresStatus}
+            </if>
+            <if test="periodId != null and periodId != ''">
+                AND t1.PERIOD_ID=#{periodId}
+            </if>
+            <if test="subjectId != null and subjectId != ''">
+                AND t1.SUBJECT_ID=#{subjectId}
+            </if>
+            <if test="editionId != null and editionId != ''">
+                AND t1.EDITION_ID=#{editionId}
+            </if>
+            <if test="gradeId != null and gradeId != ''">
+                AND t1.GRADE_ID=#{gradeId}
+            </if>
+            <if test="volumeId != null and volumeId != ''">
+                AND t1.VOLUME_ID=#{volumeId}
+            </if>
+            <if test="textbookId != null and textbookId != ''">
+                AND t1.TEXTBOOK_ID=#{textbookId}
+            </if>
+            <if test="userId != null and userId != ''">
+            	AND t0.USER_ID=#{userId}
+            </if>
+            <if test="orgId != null and orgId != ''">
+            	AND t0.ORG_ID=#{orgId}
+            </if>
+        </where>
+    </sql>
+    
+    <!-- select CP res for pagination -->
+    <select id="selectCpResForPagination" parameterType="hashmap" resultMap="ResourceMap">
+    	<include refid="CommonMapper.pageStart"/>
+    	<include refid="selectCpResClause"/>
+    	<include refid="CommonMapper.pageEnd"/>
+    </select>
+    <!-- select count -->
+    <select id="selectCpResCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectCpResClause"/>)
+    </select>
+    
+    <!-- select reported res clause -->
+    <sql id="selectReportedResClause">
+    	select t0.PK_ID as REPORT_ID,
+    		   t0.REPORTED_ID,
+    		   t0.REPORTED_NAME,
+    		   t0.REPORTED_ORG_ID,
+    		   t0.REPORTED_ORG_NAME,
+    		   t0.REPORT_TIME,
+    		   t0.RECIPIENT_ID,
+    		   t0.RECIPIENT_NAME,
+    		   t0.AUDIT_STATUS,
+    		   t0.AUDIT_DESC,
+    		   t0.AUDIT_TIME,
+    		   t0.REPORT_TYPE,
+    		   t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_NAME
+		  from T_RES_REPORT t0 inner join T_RESOURCE t1 on t0.RES_ID=t1.RES_ID
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		<if test="chapterId != null and chapterId != ''">
+			inner join T_RES_CHAPTER t9 on t1.RES_ID=t9.RES_ID AND t9.CHAPTER_ID in (select CHAPTER_ID from T_CHAPTER start with CHAPTER_ID=#{chapterId} connect by prior CHAPTER_ID=CHAPTER_PID)
+		</if>
+		<if test="resTypeId != null and resTypeId != ''">
+        	<!-- inner join T_RESTYPE_RES t10 on t1.RES_ID=t10.RES_ID -->
+        	inner join T_RES_METADATA t10 on t1.RES_ID=t10.RES_ID
+        </if>
+		<where>
+            <if test="title != null and title != ''">
+                AND t1.TITLE like '%' || #{title} || '%'
+            </if>
+            <if test="periodId != null and periodId != ''">
+                AND t1.PERIOD_ID=#{periodId}
+            </if>
+            <if test="subjectId != null and subjectId != ''">
+                AND t1.SUBJECT_ID=#{subjectId}
+            </if>
+            <if test="editionId != null and editionId != ''">
+                AND t1.EDITION_ID=#{editionId}
+            </if>
+            <if test="gradeId != null and gradeId != ''">
+                AND t1.GRADE_ID=#{gradeId}
+            </if>
+            <if test="volumeId != null and volumeId != ''">
+                AND t1.VOLUME_ID=#{volumeId}
+            </if>
+            <if test="textbookId != null and textbookId != ''">
+                AND t1.TEXTBOOK_ID=#{textbookId}
+            </if>
+            <if test="isCollect != null and isCollect != ''">
+            	AND t1.IS_COLLECT=#{isCollect}
+            </if>
+            <if test="reportedId != null and reportedId != ''">
+            	AND t0.REPORTED_ID=#{reportedId}
+            </if>
+            <if test="reportedName != null and reportedName != ''">
+            	AND t0.REPORTED_NAME like '%' || #{reportedName} || '%'
+            </if>
+            <if test="reportedOrgId != null and reportedOrgId != ''">
+            	AND t0.REPORTED_ORG_ID=#{reportedOrgId}
+            </if>
+            <if test="reportedOrgName != null and reportedOrgName != ''">
+            	AND t0.REPORTED_ORG_NAME like '%' || #{reportedOrgName} || '%'
+            </if>
+            <if test="reportTimeBegin != null and reportTimeBegin != ''">
+            	AND <![CDATA[ t0.REPORT_TIME >= to_date(#{reportTimeBegin}, 'yyyy-mm-dd hh24:mi:ss') ]]>
+            </if>
+            <if test="reportTimeEnd != null and reportedTimeEnd != ''">
+            	AND <![CDATA[ t0.REPORT_TIME < (to_date(#{reportTimeEnd}, 'yyyy-mm-dd hh24:mi:ss') + 1) ]]>
+            </if>
+            <if test="recipientId != null and recipientId != ''">
+            	AND RECIPIENT_ID=#{recipientId}
+            </if>
+            <if test="auditStatus != null and auditStatus != ''">
+            	AND AUDIT_STATUS=#{auditStatus}
+            </if>
+            <if test="auditTimeBegin != null and auditTimeBegin != ''">
+            	AND <![CDATA[ t0.AUDIT_TIME >= to_date(#{auditTimeBegin}, 'yyyy-mm-dd hh24:mi:ss') ]]>
+            </if>
+            <if test="auditTimeEnd != null and auditTimeEnd != ''">
+            	AND <![CDATA[ t0.AUDIT_TIME < (to_date(#{auditTimeEnd}, 'yyyy-mm-dd hh24:mi:ss') + 1) ]]>
+            </if>
+            <if test="reportType != null and reportType != ''">
+            	AND t0.REPORT_TYPE=#{reportType}
+            </if>
+            <if test="resTypeId != null and resTypeId != ''">
+        		<!-- AND t10.RES_TYPE_ID=#{resTypeId} -->
+        		AND t10.METADATA_ID=#{resTypeId}
+        	</if>
+        	
+        	order by t0.REPORT_TIME desc
+        </where>
+    </sql>
+    
+    <!-- select CP res for pagination -->
+    <select id="selectReportedResForPagination" parameterType="hashmap" resultMap="ResourceMap">
+    	<include refid="CommonMapper.pageStart"/>
+    	<include refid="selectReportedResClause"/>
+    	<include refid="CommonMapper.pageEnd"/>
+    </select>
+    
+        <!-- select Org res for pagination -->
+    <select id="selectOrgResForPagination" parameterType="hashmap" resultMap="ResourceMap">
+	<include refid="CommonMapper.pageStart"/> 
+    	<include refid="selectOrgResClause"/>
+  	<include refid="CommonMapper.pageEnd"/>
+    </select>
+    
+        <!-- select count -->
+    <select id="selectOrgResCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectOrgResClause"/>)
+    </select>
+    
+   <!-- select reported res clause -->
+    <sql id="selectOrgResClause">
+   select t1.IS_RECOMMEND,
+    t1.ORG_ID,
+    t1.PUBLIC_STATUS,
+    t1.OWNER_TYPE,
+    t1.RESOURCE_OWNER_TYPE,
+    t1.PORTALAUDITSTATUS,
+    t1.COMMUNITY_RESOURCE,
+    t1.CREATE_TIME,
+    t1.MODIFY_TIME,
+   t2.RES_ID ,
+   t2.TITLE,
+   t2.KEYWORD,
+   t2.INTRO,
+   t2.RES_FORM,
+   t2.URL,
+   t2.STATUS,
+   t2.FID,
+   t2.PERIOD_ID,
+   t2.SUBJECT_ID,
+   t10.SUBJECT_NAME,
+   t2.EDITION_ID,
+   t2.GRADE_ID,
+   t9.GRADE_NAME,
+   t2.VOLUME_ID,
+   t11.VOLUME_NAME,
+   t2.TEXTBOOK_ID,
+   t2.VIEW_COUNT,
+   t2.DOWN_COUNT,
+   t2.COMMENT_COUNT,
+   t2.SCORE,
+   t2.IS_COLLECT,   
+   t2.CREATOR_ID,
+   t7.TEXTBOOK_NAME, 
+   t8.FILE_SIZE,
+   t8.FILE_EXT  
+   from T_RES_OWNER t1 
+ <if test="resTypeId != null and resTypeId != ''"> 
+	inner join  (select  * from T_RESOURCE where RES_ID in 
+  (select t3.RES_ID from T_RESTYPE_RES t3 where t3.RES_TYPE_ID in 
+  (select t4.RES_TYPE_ID from T_RES_TYPE t4 start with t4.RES_TYPE_ID=#{resTypeId}
+  connect by prior t4.RES_TYPE_ID= t4.RES_TYPE_PID))) t2
+ </if> 
+	<if test="resTypeId == null or resTypeId == ''">
+	inner join  T_RESOURCE  t2
+	</if> 
+   on t1.RES_ID = t2.RES_ID 
+
+    left join T_ATTACH_FILE t8
+		    on t2.FID = t8.FID
+    left join T_TEXTBOOK t7
+		    on t2.TEXTBOOK_ID = t7.TEXTBOOK_ID 
+    left join t_base_grade t9
+            on t9.grade_id = t2.grade_id
+    left join t_base_subject t10
+            on t10.subject_id = t2.subject_id
+    left join t_base_volume t11
+            on t11.volume_id = t2.volume_id
+		<where>
+			<if test="ownerType != null and ownerType != ''">
+				t1.OWNER_TYPE = #{ownerType}
+			</if>
+			<if test="orgId != null and orgId != ''">
+				AND t1.ORG_ID = #{orgId}
+			</if>
+			<if test="subjectId != null and subjectId != ''">
+				AND t2.SUBJECT_ID =#{subjectId}
+			</if>
+			<if test="volumeId != null and volumeId != ''">
+				AND t2.VOLUME_ID =#{volumeId}
+			</if>
+			<if test="title != null and title != ''">
+				AND lower(t2.TITLE) like lower('%' || #{title} || '%')
+			</if>
+			<if test="gradeId != null and gradeId != ''">
+				AND t2.GRADE_ID=#{gradeId}
+			</if>
+			<if test="periodId != null and periodId != ''">
+				AND t2.PERIOD_ID=#{periodId}
+			</if>
+			<if test="keyword != null and keyword != ''">
+				AND t2.KEYWORD like '%' || #{keyword} || '%'
+			</if>
+			<if test="publicStatus != null and publicStatus != ''">
+				<choose>
+					<when test="publicStatus == 'a'.toString()">
+						<!-- 注：特殊需求，保证能查询到当前目录的文件夹和公开状态的资源 -->
+						AND (t1.IS_FOLDER = '0' or t1.PUBLIC_STATUS = '1')
+					</when>
+					<otherwise>
+						AND t1.PUBLIC_STATUS = #{publicStatus}
+					</otherwise>
+				</choose>
+			</if>
+			order by t1.CREATE_TIME desc
+		</where>
+    </sql>
+    
+    <!-- select count -->
+    <select id="selectReportedResCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectReportedResClause"/>)
+    </select>
+    
+    <select id="selectResourceByReportIds" parameterType="java.util.List" resultMap="ResourceMap">
+    	select t0.PK_ID as REPORT_ID,
+    		   t0.REPORTED_ID,
+    		   t0.REPORTED_NAME,
+    		   t0.REPORTED_ORG_ID,
+    		   t0.REPORTED_ORG_NAME,
+    		   t0.REPORT_TIME,
+    		   t0.RECIPIENT_ID,
+    		   t0.RECIPIENT_NAME,
+    		   t0.AUDIT_STATUS,
+    		   t0.AUDIT_DESC,
+    		   t0.AUDIT_TIME,
+    		   t1.*,
+		       t2.PERIOD_NAME,
+		       t3.SUBJECT_NAME,
+		       t4.GRADE_NAME,
+		       t5.VOLUME_NAME,
+		       t6.EDITION_NAME,
+		       t7.TEXTBOOK_NAME,
+		       t8.FILE_NAME_LOCAL as FILE_NAME,
+		       t8.FILE_ID,
+		       t8.FILE_EXT,
+		       t8.FILE_LENGTH,
+		       t8.FILE_SIZE,
+		       t8.THUMBNAIL_FILE_NAME,
+		       t8.THUMBNAIL_FILE_ID,
+		       t8.THUMBNAIL_FILE_LENGTH,
+		       t14.FORMAT_NAME,
+		       t15.LANGUAGE_ID
+		  from T_RES_REPORT t0 inner join T_RESOURCE t1 on t0.RES_ID=t1.RES_ID
+		  left join T_BASE_PERIOD t2
+		    on t1.PERIOD_ID = t2.PERIOD_ID
+		  left join T_BASE_SUBJECT t3
+		    on t1.SUBJECT_ID = t3.SUBJECT_ID
+		  left join T_BASE_GRADE t4
+		    on t1.GRADE_ID = t4.GRADE_ID
+		  left join T_BASE_VOLUME t5
+		    on t1.VOLUME_ID = t5.VOLUME_ID
+		  left join T_EDITION t6
+		    on t1.EDITION_ID = t6.EDITION_ID
+		  left join T_TEXTBOOK t7
+		    on t1.TEXTBOOK_ID = t7.TEXTBOOK_ID
+		  left join T_ATTACH_FILE t8
+		    on t1.FID = t8.FID
+		  left join T_FORMAT t14
+		    on t1.FORMAT_ID = t14.FORMAT_ID
+		  left join T_LANGUAGE t15
+		    on t1.LANGUAGE_ID = t15.LANGUAGE_ID
+		 where t0.PK_ID in 
+		 <foreach collection="list" item="reportIdList" open="(" separator="," close=")">
+		 	#{reportIdList}
+		 </foreach>
+    </select>
+
+    <!-- insert one -->
+    <insert id="insertOne" parameterType="Resource">
+        insert into T_RESOURCE (
+        <trim suffixOverrides=",">
+        	<if test="resId != null">
+            	RES_ID,
+            </if>
+            <if test="title != null">
+            	TITLE,
+            </if>
+            <if test="keyword != null">
+            	KEYWORD,
+            </if>
+            <if test="intro != null">
+            	INTRO,
+            </if>
+            <if test="resForm != null">
+            	RES_FORM,
+            </if>
+            <if test="url != null">
+            	URL,
+            </if>
+            <if test="status != null">
+            	STATUS,
+            </if>
+            <if test="periodId != null">
+            	PERIOD_ID,
+            </if>
+            <if test="subjectId != null">
+            	SUBJECT_ID,
+            </if>
+            <if test="gradeId != null">
+            	GRADE_ID,
+            </if>
+            <if test="volumeId != null">
+            	VOLUME_ID,
+            </if>
+            <if test="editionId != null">
+            	EDITION_ID,
+            </if>
+            <if test="textbookId != null">
+            	TEXTBOOK_ID,
+            </if>
+            <if test="fid != null">
+            	FID,
+            </if>
+            <if test="creatorId != null">
+            	CREATOR_ID,
+            </if>
+            <if test="isCollect != null">
+            	IS_COLLECT,
+            </if>
+            <if test="platformCode != null">
+            	PLATFORM_CODE,
+            </if>
+            <if test="regionCode != null">
+            	REGION_CODE,
+            </if>
+            <if test="examSubjectId != null">
+            	EXAM_SUBJECT_ID,
+            </if>
+            <if test="examYear != null">
+            	EXAM_YEAR,
+            </if>
+            <if test="resSource != null">
+            	RES_SOURCE,
+            </if>
+            <if test="formatId != null">
+            	FORMAT_ID,
+            </if>
+            <if test="languageId != null">
+            	LANGUAGE_ID,
+            </if>
+            <if test="areaCode != null">
+            	AREA_CODE,
+            </if>
+            <if test="folderId != null">
+            	FOLDER_ID,
+            </if>
+        </trim>
+        ) values (
+        <trim suffixOverrides=",">
+        	<if test="resId != null">
+            	#{resId},
+            </if>
+            <if test="title != null">
+            	#{title},
+            </if>
+            <if test="keyword != null">
+            	#{keyword},
+            </if>
+            <if test="intro != null">
+            	#{intro},
+            </if>
+            <if test="resForm != null">
+            	#{resForm},
+            </if>
+            <if test="url != null">
+            	#{url},
+            </if>
+            <if test="status != null">
+            	#{status},
+            </if>
+            <if test="periodId != null">
+            	#{periodId},
+            </if>
+            <if test="subjectId != null">
+            	#{subjectId},
+            </if>
+            <if test="gradeId != null">
+            	#{gradeId},
+            </if>
+            <if test="volumeId != null">
+            	#{volumeId},
+            </if>
+            <if test="editionId != null">
+            	#{editionId},
+            </if>
+            <if test="textbookId != null">
+            	#{textbookId},
+            </if>
+            <if test="fid != null">
+            	#{fid},
+            </if>
+            <if test="creatorId != null">
+            	#{creatorId},
+            </if>
+            <if test="isCollect != null">
+            	#{isCollect},
+            </if>
+            <if test="platformCode != null">
+            	#{platformCode},
+            </if>
+            <if test="regionCode != null">
+            	#{regionCode},
+            </if>
+            <if test="examSubjectId != null">
+            	#{examSubjectId},
+            </if>
+            <if test="examYear != null">
+            	#{examYear},
+            </if>
+            <if test="resSource != null">
+            	#{resSource},
+            </if>
+            <if test="formatId != null">
+            	#{formatId},
+            </if>
+            <if test="languageId != null">
+            	#{languageId},
+            </if>
+            <if test="areaCode != null">
+            	#{areaCode}
+            </if>
+            <if test="folderId != null">
+            	#{folderId},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <!-- update one -->
+    <update id="updateOne" parameterType="Resource">
+        update T_RESOURCE
+        <set>
+        <trim suffixOverrides=",">
+            <if test="title != null">
+                TITLE=#{title},
+            </if>
+            <if test="keyword != null">
+                KEYWORD=#{keyword},
+            </if>
+            <if test="intro != null">
+                INTRO=#{intro},
+            </if>
+            <if test="resForm != null">
+                RES_FORM=#{resForm},
+            </if>
+            <if test="url != null">
+                URL=#{url},
+            </if>
+            <if test="status != null">
+                STATUS=#{status},
+            </if>
+            <if test="periodId != null">
+                PERIOD_ID=#{periodId},
+            </if>
+            <if test="subjectId != null">
+                SUBJECT_ID=#{subjectId},
+            </if>
+            <if test="gradeId != null">
+                GRADE_ID=#{gradeId},
+            </if>
+            <if test="volumeId != null">
+                VOLUME_ID=#{volumeId},
+            </if>
+            <if test="editionId != null">
+                EDITION_ID=#{editionId},
+            </if>
+            <if test="textbookId != null">
+                TEXTBOOK_ID=#{textbookId},
+            </if>
+            <if test="fid != null">
+                FID=#{fid},
+            </if>
+            <if test="modifierId != null">
+                MODIFIER_ID=#{modifierId},
+            </if>
+            <if test="modifyTime != null">
+                MODIFY_TIME=#{modifyTime},
+            </if>
+            <if test="viewCount != null">
+            	VIEW_COUNT=#{viewCount},
+            </if>
+            <if test="downCount != null">
+            	DOWN_COUNT=#{downCount},
+            </if>
+             <if test="collectedCount != null">
+            	COLLECTED_COUNT=#{collectedCount},
+            </if>
+             <if test="commentCount != null">
+            	COMMENT_COUNT=#{commentCount},
+            </if>
+            <if test="score != null">
+            	SCORE=#{score},
+            </if>
+            <if test="platformCode != null">
+            	PLATFORM_CODE=#{platformCode},
+            </if>
+            <if test="regionCode != null">
+            	REGION_CODE=#{regionCode},
+            </if>
+            <if test="examSubjectId != null">
+            	EXAM_SUBJECT_ID=#{examSubjectId},
+            </if>
+            <if test="examYear != null">
+            	EXAM_YEAR=#{examYear},
+            </if>
+            <if test="formatId != null">
+            	FORMAT_ID=#{formatId},
+            </if>
+            <if test="languageId != null">
+            	LANGUAGE_ID=#{languageId},
+            </if>
+            <if test="areaCode != null">
+            	AREA_CODE=#{areaCode},
+            </if>
+            <if test="folderId != null and folderId != ''">
+            	FOLDER_ID=#{folderId},
+            </if>
+          </trim>
+        </set>
+        where RES_ID=#{resId}
+    </update>
+    
+    <update id="updateRes" parameterType="Resource">
+         update T_RESOURCE 
+         <set>
+            <trim suffixOverrides=",">
+              <if test="status != null">
+                STATUS=#{status}
+              </if>
+             </trim>	
+        </set>
+        where RES_ID=#{resId}
+    </update>
+    
+    <!-- delete one -->
+    <delete id="deleteResTypeRes" parameterType="string">
+        delete from T_RESTYPE_RES where RES_ID=#{resId}
+    </delete>
+    
+     <!-- delete one -->
+    <delete id="deleteResChapter" parameterType="string">
+        delete from T_RES_CHAPTER where RES_ID=#{resId}
+    </delete>
+    
+    <!-- delete one -->
+    <delete id="deleteResMetaData" parameterType="string">
+        delete from T_RES_METADATA where RES_ID=#{resId}
+    </delete>
+    
+	<!--     根据资源id查询资源是否存在 -->
+    <select id="selectResExistsByResId" parameterType="string" resultType="int">
+		SELECT   count(1)
+		FROM     T_RESOURCE
+		WHERE    RES_ID=#{resId}
+    </select>
+    
+    <!-- 插入资源章节关联关系  20140729-->
+    <insert id="insertOneResChapter" parameterType="hashmap"> 
+		Insert into T_RES_CHAPTER (
+		         RES_ID,
+		         CHAPTER_ID)
+		Values(
+		         #{resId}, 
+		         #{chapterId})
+    </insert>
+    
+    <!-- 插入资源章节关联关系  20140808-->
+    <insert id="insertResChapter" parameterType="hashmap"> 
+		Insert into T_RES_CHAPTER (
+		         RES_ID,
+		         CHAPTER_ID)
+		<foreach collection="chapterIdList" item="chapterId" index="index" separator="UNION ALL" >
+			select #{resId}, #{chapterId} from dual
+		</foreach> 
+    </insert>
+    
+    <!-- 保存元数据信息  20140730-->
+    <insert id="insertResMetadata" parameterType="hashmap"> 
+		Insert into T_RES_METADATA (
+		         RES_ID,
+		         METADATA_ID) 
+		<foreach collection="resMetadataList" item="metadataId" index="index" separator="UNION ALL" >
+			select #{resId}, #{metadataId} from dual
+		</foreach> 
+    </insert>
+    
+	<!--     保存资源的资源类型关系 20140729 -->
+    <insert id="insertResTypeRes" parameterType="hashmap"> 
+		Insert into T_RESTYPE_RES (
+		         RES_TYPE_ID,
+		         RES_ID) 
+		<foreach collection="resTypeList" item="resTypeId" index="index" separator="UNION ALL" >
+			select #{resTypeId}, #{resId} from dual
+		</foreach> 
+    </insert>
+    
+    
+	<!--     保存上报资源流程 20140729 -->
+    <insert id="insertResReport" parameterType="ResReport"> 
+		Insert into T_RES_REPORT (
+			<trim suffixOverrides=",">
+	        	<if test="pkId != null">
+	            	PK_ID,
+	            </if>
+	            <if test="resId != null">
+	            	RES_ID,
+	            </if>
+	            <if test="reportedId != null">
+	            	REPORTED_ID,
+	            </if>
+	            <if test="reportedName != null">
+	            	REPORTED_NAME,
+	            </if>
+	            <if test="reportedOrgId != null">
+	            	REPORTED_ORG_ID,
+	            </if>
+	            <if test="reportedOrgName != null">
+	            	REPORTED_ORG_NAME,
+	            </if>
+	            <if test="reportTime != null">
+	            	REPORT_TIME,
+	            </if>
+	            <if test="recipientId != null">
+	            	RECIPIENT_ID,
+	            </if>
+	            <if test="recipientName != null">
+	            	RECIPIENT_NAME,
+	            </if>
+	            <if test="auditStatus != null">
+	            	AUDIT_STATUS,
+	            </if>
+	            <if test="auditDesc != null">
+	            	AUDIT_DESC,
+	            </if>
+	            <if test="auditTime != null">
+	            	AUDIT_TIME
+	            </if>
+	        </trim>
+		) Values(
+			<trim suffixOverrides=",">
+	        	<if test="pkId != null">
+	            	#{pkId},
+	            </if>
+	            <if test="resId != null">
+	            	#{resId},
+	            </if>
+	            <if test="reportedId != null">
+	            	#{reportedId},
+	            </if>
+	            <if test="reportedName != null">
+	            	#{reportedName},
+	            </if>
+	            <if test="reportedOrgId != null">
+	            	#{reportedOrgId},
+	            </if>
+	            <if test="reportedOrgName != null">
+	            	#{reportedOrgName},
+	            </if>
+	            <if test="reportTime != null">
+	            	#{reportTime},
+	            </if>
+	            <if test="recipientId != null">
+	            	#{recipientId},
+	            </if>
+	            <if test="recipientName != null">
+	            	#{recipientName},
+	            </if>
+	            <if test="auditStatus != null">
+	            	#{auditStatus},
+	            </if>
+	            <if test="auditDesc != null">
+	            	#{auditDesc},
+	            </if>
+	            <if test="auditTime != null">
+	            	#{auditTime}
+	            </if>
+	        </trim> 
+	         )
+    </insert>
+    
+    <select id="selectCountRes" parameterType="hashmap" resultType="int">
+        select count(RES_ID) from T_RESOURCE where CREATOR_ID=#{creatorId} and STATUS='0'
+    </select>
+    
+    <select id="getResMetaDate" parameterType="string" resultMap="ResourceMap">
+         select r.*,d.METADATA_NAME,f.FILE_EXT,f.FILE_SIZE from T_RESOURCE r left join T_RES_METADATA m on r.RES_ID=m.RES_ID left join T_METADATA d on m.METADATA_ID=d.METADATA_ID left join T_ATTACH_FILE f
+		    on r.FID = f.FID where r.RES_ID=#{resId} and d.METADATA_TYPE='2'
+    </select>
+    
+    
+    <sql id="selectmyCatalogueClause">
+    	select t.*
+			from (select t1.pk_id as DATA_ID,
+					t1.RECIPIENT_ID as ORG_ID,
+					t1.report_time as CATALOGUE_TIME,
+					t2.TITLE as TITLE,
+					t5.metadata_name as TYPENAME,
+					'1' as CATALOGUE_FLAG,
+					t1.AUDIT_STATUS as STATUS,
+					t1.AUDIT_DESC as AUDIT_DESC,
+					(select t12.FILE_EXT from T_RESOURCE t11 left join T_ATTACH_FILE t12 on t11.fid = t12.fid
+                       where t11.res_id = t1.res_id) as FILE_EXT,
+                    t1.RES_ID as RES_ID
+				  from T_RES_REPORT t1
+				  left join T_RESOURCE t2
+					on t1.RES_ID = t2.RES_ID
+				  left join (select t4.RES_ID,
+	                           t3.METADATA_ID,
+	                           t3.METADATA_NAME,
+	                           t3.metadata_type
+	                         from T_metadata t3
+	                         inner join t_res_metadata t4
+	                         on t3.METADATA_ID = t4.METADATA_ID
+	                         where t3.Metadata_Type = '2') t5
+	              on t5.res_id = t1.res_id
+	              <where>
+		            <if test="userId != null and userId != ''">
+		                t1.REPORTED_ID = #{userId}
+		            </if>
+		            <if test="title != null and title != ''">
+                		AND t2.TITLE like '%' || #{title} || '%'
+            		</if>
+		          </where>
+	              union all
+	                select t6.PRODUCT_CODE as DATA_ID,
+	                t6.ORG_ID as ORG_ID,
+	                t6.CREATE_TIME as CATALOGUE_TIME,
+	                t6.PRODUCT_NAME as TITLE,
+	                case when (select count(t7.res_id)
+	                           from T_PROD_RES t7 where t7.product_code = t6.product_code) > 1 
+	                     then null
+	                     else
+	                  (select t8.METADATA_NAME
+	                     from T_metadata t8
+	                    inner join t_res_metadata t9
+	                       on t8.METADATA_ID = t9.METADATA_ID
+	                    where t8.Metadata_Type = '2'
+	                      and t9.res_id =
+	                          (select t10.res_id
+	                             from T_PROD_RES t10
+	                            where t10.product_code = t6.product_code))
+	                end as TYPENAME,
+	                '2' as CATALOGUE_FLAG,
+	                t6.STATUS as STATUS,
+	                null as AUDIT_DESC,
+	                (case when (select count(t7.res_id) from T_PROD_RES t7 where t7.product_code = t6.product_code) > 1 
+	                then null else 
+	                		(select t12.FILE_EXT from T_RESOURCE t11 left join T_ATTACH_FILE t12 on t11.fid = t12.fid 
+	                		 where t11.res_id = (select t7.res_id from T_PROD_RES t7 where t7.product_code = t6.product_code))
+                    end) as FILE_EXT,
+                    (case when (select count(t7.res_id) from T_PROD_RES t7 where t7.product_code = t6.product_code) > 1 
+	                then null else 
+	                		(select t7.res_id from T_PROD_RES t7 where t7.product_code = t6.product_code)
+                    end) as RES_ID
+	                from T_PRODUCT t6
+	                <where>
+			            <if test="userId != null and userId != ''">
+			                t6.user_id = #{userId}
+			            </if>
+			            <if test="title != null and title != ''">
+	                		AND t6.PRODUCT_NAME like '%' || #{title} || '%'
+	            		</if>
+		          	</where>
+        ) t order by t.CATALOGUE_TIME desc
+    </sql>
+    
+    <sql id="selectProdCatalogueClause">
+       select e.* from (
+		select t.product_code as dataId,t.auditor_org_name as reportedOrgName,t.create_time as catalogueTime,t.audit_status as status,t.provide_id,t.audit_desc,
+		t1.product_name as title,
+		t1.owner_type as ownerType,
+		case
+		  when (select count(*) from t_prod_res t2 where t2.product_code=t.product_code) > 1
+		    then null
+		      else
+		        (select t5.classification_name from t_classification t5 where t5.classification_id=
+		         (select t4.classification_id from t_res_classification t4 where t4.res_id=
+		          (select t3.res_id from t_prod_res t3 where t3.product_code=t.product_code)))end as typeName,
+		 case
+		  when (select count(*) from t_prod_res t2 where t2.product_code=t.product_code) > 1
+		    then null
+		      else
+		        (select t6.file_ext from t_attach_file t6 where t6.fid=
+		          (select t7.fid from t_resource t7 where t7.res_id=
+		            (select t8.res_id from t_prod_res t8 where t8.product_code=t.product_code)))end as fileExt
+		from t_prod_report t left join t_product t1 on t1.product_code=t.product_code
+		<where>
+		   <if test="userId != null and userId != ''">
+                t.provide_id = #{userId}
+           </if>
+           <if test="title != null and title != ''">
+              	AND UPPER(t1.product_name) like '%' || UPPER(#{title}) || '%'
+           </if>
+           <if test="status != null and status != ''">
+              	AND t1.status = #{status}
+           </if>
+           <if test="ownerType != null and ownerType != ''">
+              	AND t1.owner_type = #{ownerType}
+           </if>
+		</where>
+		) e 
+		order by e.catalogueTime desc
+    </sql>
+    
+    <!-- select myCatalogue res for pagination -->
+    <select id="selectmyCatalogueForPagination" parameterType="hashmap" resultMap="ResourceMap">
+    	<include refid="CommonMapper.pageStart"/>
+    	<include refid="selectProdCatalogueClause"/>
+    	<include refid="CommonMapper.pageEnd"/>
+    </select>
+    
+    <!-- select count -->
+    <select id="selectmyCatalogueCount" parameterType="hashmap" resultType="int">
+        select count(*) from (<include refid="selectProdCatalogueClause"/>)
+    </select>
+    
+    <select id="selectResListByProductClassification" parameterType="hashmap" resultMap="ResourceMap">
+    	select 
+    		t1.RES_ID, t1.TITLE,t1.SCORE,t1.VIEW_COUNT,t1.DOWN_COUNT,t1.CREATOR_ID,t1.CREATE_TIME,
+    		t2.FILE_EXT,t2.FILE_SIZE
+    	from T_RESOURCE t1 left join T_ATTACH_FILE t2 on t1.FID = t2.FID
+    	where t1.RES_ID in
+    		 (select c.RES_ID from T_RES_CLASSIFICATION c where c.RES_ID in
+    		 	 (select t.res_id from t_prod_res t where t.product_code = #{productCode})
+    		 	 <if test="classificationId != null and classificationId != ''">
+	    		 	 and c.CLASSIFICATION_ID = #{classificationId}
+    		 	 </if>
+    		 	 <if test="notInClassificationId != null and notInClassificationId != ''">
+    		 	 	and c.CLASSIFICATION_ID not in 
+    		 	 	<foreach item="item" index="index" collection="notInClassificationId" open="(" separator="," close=")">
+	    				#{item}
+        			</foreach>
+    		 	 </if>
+    		 )
+    </select>
+</mapper>

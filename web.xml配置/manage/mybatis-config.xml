@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J2" />
+	</settings>
+
+	<typeAliases>
+		<!-- 基础数据管理 -->
+		<typeAlias type="com.whty.cms.api.metadata.entity.BasePeriod" alias="BasePeriod" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.BaseGrade" alias="BaseGrade" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.BaseSubject" alias="BaseSubject" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.BaseVolume" alias="BaseVolume" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Edition" alias="Edition" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Textbook" alias="Textbook" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.TextbookMap" alias="TextbookMap" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Chapter" alias="Chapter" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Metadata" alias="Metadata" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.SensitiveWord" alias="SensitiveWord" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Comment" alias="Comment" />
+		<typeAlias type="com.whty.cms.api.metadata.entity.Score" alias="Score" />
+		<typeAlias type="com.whty.cms.service.metadata.domain.Classification" alias="Classification"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.Language" alias="Language"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.Use" alias="Use"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.Learning" alias="Learning"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.Applicable" alias="Applicable"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.Format" alias="Format"/>
+		<typeAlias type="com.whty.cms.service.metadata.domain.FormatExt" alias="FormatExt"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.PlatForm" alias="PlatForm"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.SpecialType" alias="SpecialType"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.KnowledgePoint" alias="KnowledgePoint"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.GeneralChapter" alias="GeneralChapter"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.ExamSubjectRel" alias="ExamSubjectRel"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.ExamSubject" alias="ExamSubject"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.Subscribe" alias="Subscribe"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.SubscribeLog" alias="SubscribeLog"/>
+		<typeAlias type="com.whty.cms.api.metadata.entity.ServerMap" alias="ServerMap"/>
+		
+		<!-- 资源管理 -->
+		<typeAlias type="com.whty.cms.api.resource.entity.Resource" alias="Resource" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.ResOwner" alias="ResOwner" />
+		<typeAlias type="com.whty.cms.api.resource.entity.ResType" alias="ResType" />
+		<typeAlias type="com.whty.cms.api.resource.entity.ResandType" alias="ResandType" />
+		<typeAlias type="com.whty.cms.api.resource.entity.CmsKeyValueDef" alias="CmsKeyValueDef" />
+		<typeAlias type="com.whty.cms.api.resource.entity.SrcFile" alias="SrcFile" />
+		<typeAlias type="com.whty.cms.api.resource.entity.AttachFile" alias="AttachFile" />
+		<typeAlias type="com.whty.cms.api.resource.entity.TransFile" alias="TransFile" />
+		<typeAlias type="com.whty.cms.api.resource.entity.CpresStatus" alias="CpresStatus" />
+		<typeAlias type="com.whty.cms.api.resource.entity.DishCapacity" alias="DishCapacity" />
+		<typeAlias type="com.whty.cms.api.resource.entity.AttachTransFile" alias="AttachTransFile"/>
+		<typeAlias type="com.whty.cms.api.resource.entity.SDownloadRight" alias="SDownloadRight"/>
+		<typeAlias type="com.whty.cms.api.resource.entity.TextbookFolder" alias="TextbookFolder"/>
+		<typeAlias type="com.whty.cms.service.netdisk.entity.Netdisk" alias="Netdisk"/>
+		<typeAlias type="com.whty.cms.api.netdisk.dto.NetdiskDTO" alias="NetdiskDTO"/>
+		
+		<!-- 天喻备受课系统定制化接口 -->
+		<typeAlias type="com.whty.cms.api.resource.vo.TianyuResource" alias="TianyuResource"/>
+
+		<!-- 产品管理 -->
+		<typeAlias type="com.whty.cms.api.product.entity.Product" alias="Product" />
+		<typeAlias type="com.whty.cms.api.product.entity.ProdOwner" alias="ProdOwner" />
+		<typeAlias type="com.whty.cms.api.product.entity.ProdReport" alias="ProdReport" />
+		<typeAlias type="com.whty.cms.api.product.entity.ProdReportLog" alias="ProdReportLog" />
+		<typeAlias type="com.whty.cms.api.product.entity.ResReportCount" alias="ResReportCount" />
+		<typeAlias type="com.whty.cms.api.product.entity.AcademyResType" alias="AcademyResType" />
+
+		<typeAlias type="com.whty.cms.api.resportal.entity.HotTag" alias="HotTag" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.DownloadCount" alias="DownloadCount" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.SubjectPeriod" alias="SubjectPeriod" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.ProdCollect" alias="ProdCollect" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.ResReport" alias="ResReport" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.DownloadLog" alias="DownloadLog" />
+		<typeAlias type="com.whty.cms.api.resportal.entity.DiskCapacity" alias="DiskCapacity" />
+		
+		<!-- 用户教材 -->
+		<typeAlias type="com.whty.cms.api.user.entity.UserTextbook" alias="UserTextbook"/>
+		
+		<!-- 分享资源 -->
+		<typeAlias type="com.whty.cms.api.resource.entity.ResShare" alias="ResShare"/>
+		<!-- 分享课程资源 -->
+		<typeAlias type="com.whty.cms.api.resource.entity.CourseShare" alias="CourseShare"/>		
+		<!-- 资源统计排行 -->
+		<typeAlias type="com.whty.cms.api.resource.vo.ProductToptenz" alias="ProductToptenz"/>
+		<!-- 产品审核员 -->
+		<typeAlias type="com.whty.cms.api.product.entity.ProductAuditor" alias="ProductAuditor"/>
+		
+		<!-- 考试科目 -->
+		<typeAlias type="com.whty.cms.api.metadata.entity.ExamSubject" alias="ExamSubject"/>
+		
+		<!-- 考试科目关系 -->
+		<typeAlias type="com.whty.cms.api.metadata.entity.ExamSubjectRel" alias="ExamSubjectRel"/>
+		
+		<!-- 国家编目 -->
+		<typeAlias type="com.whty.cms.api.nation.entity.SubjectNation" alias="SubjectNation"/>
+		<typeAlias type="com.whty.cms.api.nation.entity.ChapterNation" alias="ChapterNation"/>
+		<typeAlias type="com.whty.cms.api.nation.entity.EditionNation" alias="EditionNation"/>
+		
+		<!-- 天喻编目 -->
+		<typeAlias type="com.whty.cms.api.ty.entity.BasePeriodTy" alias="BasePeriodTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.BaseGradeTy" alias="BaseGradeTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.BaseSubjectTy" alias="BaseSubjectTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.BaseVolumeTy" alias="BaseVolumeTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.EditionTy" alias="EditionTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.TextbookTy" alias="TextbookTy" />
+		<typeAlias type="com.whty.cms.api.ty.entity.ChapterTy" alias="ChapterTy" />
+		<typeAlias type="com.whty.cms.service.ty.domain.ClassificationTy" alias="ClassificationTy"/>
+		<typeAlias type="com.whty.cms.api.ty.entity.ResTypeTy" alias="ResTypeTy" />
+		<typeAlias type="com.whty.cms.service.ty.domain.FormatTy" alias="FormatTy"/>
+		<typeAlias type="com.whty.cms.service.ty.domain.FormatExtTy" alias="FormatExtTy"/>
+		<typeAlias type="com.whty.cms.api.ty.entity.ExamSubjectRelTy" alias="ExamSubjectRelTy"/>
+		<typeAlias type="com.whty.cms.api.ty.entity.ExamSubjectTy" alias="ExamSubjectTy"/>
+	</typeAliases>
+	<mappers>
+		<!-- common mapper -->
+		<mapper resource="com/whty/framework/mapper/CommonMapper.xml" />
+
+		<!-- 基础数据管理 -->
+		<mapper resource="com/whty/cms/service/metadata/mapper/BasePeriodMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/BaseGradeMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/BaseSubjectMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/BaseVolumeMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/EditionMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/TextbookMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/TextbookMapMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/ChapterMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/MetadataMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/SensitiveWordMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/CommentMapper.xml" />
+		<mapper resource="com/whty/cms/service/metadata/mapper/ClassificationMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/LanguageMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/UseMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/LearningMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/ApplicableMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/FormatMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/FormatExtMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/PlatFormMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/SpecialTypeMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/KnowledgePointMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/GeneralChapterMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/ExamSubjectRelMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/ExamSubjectMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/SubscribeMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/SubscribeLogMapper.xml"/>
+		<mapper resource="com/whty/cms/service/metadata/mapper/ServerMapMapper.xml"/>
+
+		<!-- 资源管理 -->
+		<mapper resource="com/whty/cms/service/resource/mapper/ResourceMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/ResOwnerMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/ResTypeMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/ResandTypeMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/SrcFileMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/AttachFileMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/TransFileMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/ResourceSelectMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/CpresStatusMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/ResStatusMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/OrgStatusMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/DishCapacityMapper.xml" />
+		<mapper resource="com/whty/cms/service/resource/mapper/AttachTransFileMapper.xml"/>
+		<mapper resource="com/whty/cms/service/resource/mapper/OrgResourceMapper.xml"/>
+		<mapper resource="com/whty/cms/service/resource/mapper/CPResourceMapper.xml"/>
+		<mapper resource="com/whty/cms/service/resource/mapper/ReportedResourceMapper.xml"/>
+		<mapper resource="com/whty/cms/service/resource/mapper/OwnerResourceMapper.xml"/>
+		<mapper resource="com/whty/cms/service/netdisk/mapper/NetdiskMapper.xml"/>
+		<mapper resource="com/whty/cms/service/resource/mapper/TextbookFolderMapper.xml"/>
+		
+		<!-- 天喻备受课系统定制化接口 -->
+		<mapper resource="com/whty/cms/service/resource/mapper/TianyuResourceMapper.xml"/>
+
+		<!-- 产品管理 -->
+		<mapper resource="com/whty/cms/service/product/mapper/ProductMapper.xml" />
+		<mapper resource="com/whty/cms/service/product/mapper/ProductWHMapper.xml" />
+		 
+		<mapper resource="com/whty/cms/service/product/mapper/ProdOwnerMapper.xml" />
+		<mapper resource="com/whty/cms/service/product/mapper/ProdReportMapper.xml" />
+		<mapper resource="com/whty/cms/service/product/mapper/ProdReportLogMapper.xml" />
+		
+		<!-- 前端展现 -->
+		<mapper resource="com/whty/cms/service/resportal/mapper/TagMapper.xml" />
+		<mapper resource="com/whty/cms/service/resportal/mapper/DownLoadCountMapper.xml" />
+		<mapper resource="com/whty/cms/service/resportal/mapper/ProdCollectMapper.xml" />
+		<mapper resource="com/whty/cms/service/resportal/mapper/ResReportMapper.xml" />
+		<mapper resource="com/whty/cms/service/resportal/mapper/DownloadLogMapper.xml" />
+		<mapper resource="com/whty/cms/service/resportal/mapper/DiskCapacityMapper.xml" />
+		
+		<!-- 用户关注教材 -->
+		<mapper resource="com/whty/cms/service/user/mapper/UserTextbookMapper.xml"/>
+		
+		<!-- 分享资源 -->
+		<mapper resource="com/whty/cms/service/resource/mapper/ResShareMapper.xml"/>
+		<!-- 分享课程资源 -->
+		<mapper resource="com/whty/cms/service/resource/mapper/CourseShareMapper.xml"/>
+		<!-- 资源统计排行 -->
+		<mapper resource="com/whty/cms/service/product/mapper/ProductToptenzMapper.xml"/>
+		<!-- 产品审核员-->
+		<mapper resource="com/whty/cms/service/product/mapper/ProductAuditorMapper.xml"/>
+		
+		<mapper resource="com/whty/cms/service/metadata/mapper/ExamSubjectMapper.xml"/>
+		
+		<mapper resource="com/whty/cms/service/metadata/mapper/ExamSubjectRelMapper.xml"/>
+		
+		<!-- 国家编目 -->
+		<mapper resource="com/whty/cms/service/nation/mapper/SubjectNationMapper.xml" />
+		<mapper resource="com/whty/cms/service/nation/mapper/ChapterNationMapper.xml" />
+		<mapper resource="com/whty/cms/service/nation/mapper/EditionNationMapper.xml" />
+		
+		<!-- 天喻编目 -->
+		<mapper resource="com/whty/cms/service/ty/mapper/BasePeriodTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/BaseGradeTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/BaseSubjectTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/BaseVolumeTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/EditionTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/TextbookTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/ChapterTyMapper.xml" />
+		<mapper resource="com/whty/cms/service/ty/mapper/ClassificationTyMapper.xml"/>
+		<mapper resource="com/whty/cms/service/ty/mapper/FormatTyMapper.xml"/>
+		<mapper resource="com/whty/cms/service/ty/mapper/FormatExtTyMapper.xml"/>
+		<mapper resource="com/whty/cms/service/ty/mapper/ExamSubjectRelTyMapper.xml"/>
+		<mapper resource="com/whty/cms/service/ty/mapper/ExamSubjectTyMapper.xml"/>
+		<mapper resource="com/whty/cms/service/ty/mapper/ResTypeTyMapper.xml" />
+	</mappers>
+</configuration>

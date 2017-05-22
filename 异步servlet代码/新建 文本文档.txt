@@ -1,0 +1,6 @@
+web.xml
+<servlet> 
+<servlet-name>DemoServlet</servlet-name> 
+<servlet-class>footmark.servlet.DemoServlet</servlet-class> 
+<async-supported>true</async-supported> 
+</servlet> 

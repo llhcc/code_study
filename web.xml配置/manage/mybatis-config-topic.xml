@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J2" />
+	</settings>
+
+	<typeAliases>
+		<!-- 专题资源管理 -->
+		<typeAlias type="com.whty.cms.manage.topic.entity.AcademyTopic" alias="AcademyTopic"/>
+		<typeAlias type="com.whty.cms.manage.academyResource.entity.AcademyResource" alias="AcademyResource"/>
+		<typeAlias type="com.whty.cms.manage.academyVideoCourse.entity.AcademyVideoCourse" alias="AcademyVideoCourse"/>
+	</typeAliases>
+	
+	<mappers>
+	    <!-- common mapper -->
+		<mapper resource="com/whty/framework/mapper/CommonMapper.xml" />
+		
+		<!-- academyTopic mapper -->
+		<mapper resource="com/whty/cms/manage/topic/mapper/AcademyTopicMapper.xml" />
+		
+		<!-- academyResource mapper -->
+		<mapper resource="com/whty/cms/manage/academyResource/mapper/AcademyResourceMapper.xml" />
+		
+		<!-- academyVideoCourse mapper -->
+		<mapper resource="com/whty/cms/manage/academyVideoCourse/mapper/AcademyVideoCourseMapper.xml"/>
+	</mappers>
+	
+</configuration>

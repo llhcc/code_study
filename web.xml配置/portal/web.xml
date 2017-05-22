@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>cms</display-name>
+	
+	<!-- spring context config location -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>log4jServletFilter</filter-name>
+		<filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>log4jServletFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+	
+	<!-- IP访问过滤器,测试完成后取消该过滤器 -->
+	<!--
+	<filter>
+		<filter-name>IPAccessFilter</filter-name>
+		<filter-class>com.whty.cms.common.filter.IPAccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>IPAccessFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	
+	<!-- Character Encoding Filter -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 服务域名过滤器 -->
+	<filter>
+		<filter-name>ServerNameFilter</filter-name>
+		<filter-class>com.whty.cms.common.filter.ServerNameFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ServerNameFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ServerNameFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>ServerNameFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	
+	<!-- ======================== 单点登录配置开始 ======================== -->
+	<!-- 该过滤器用于实现单点登出功能，可选配置。 -->
+	<!--
+	<filter>
+		<filter-name>SSOFilter</filter-name>
+		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SSOFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SSOFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SSOFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	-->
+
+	<!-- 该过滤器负责用户登陆的心跳判断 -->
+	<filter>
+		<filter-name>AuthHeartFilter</filter-name>
+		<filter-class>com.whty.cms.web.common.filter.AuthenticationHeartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthHeartFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AuthHeartFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+
+	<!-- 该过滤器负责用户的认证工作，必须启用它 -->
+	<filter>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>com.whty.cms.common.filter.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+
+	<!-- 该过滤器负责对Ticket的校验工作，必须启用它 -->
+	<filter>
+		<filter-name>TicketValidFilter</filter-name>
+		<filter-class>com.whty.cms.common.filter.Cas20ProxyReceivingTicketValidationFilter</filter-class>
+		<init-param>
+			<param-name>casServerUrlPrefix</param-name>
+			<param-value>http://192.168.36.101:10007/aamif/ticketValidate</param-value>
+		</init-param>
+		<init-param>
+			<param-name>redirectAfterValidation</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>artifactParameterName</param-name>
+			<param-value>ticket</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>TicketValidFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>TicketValidFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+
+	<!-- 该过滤器负责实现HttpServletRequest请求的包裹， 比如允许开发者通过HttpServletRequest的getRemoteUser()方法获得SSO登录用户的登录名，可选配置。 -->
+	<filter>
+		<filter-name>HttpServletRequestWrapperFilter</filter-name>
+		<filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HttpServletRequestWrapperFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>HttpServletRequestWrapperFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+
+	<!-- 该过滤器使得开发者可以通过org.jasig.cas.client.util.AssertionHolder来获取用户的登录名。 比如AssertionHolder.getAssertion().getPrincipal().getName()。 -->
+	<filter>
+		<filter-name>AssertionThreadLocalFilter</filter-name>
+		<filter-class>org.jasig.cas.client.util.AssertionThreadLocalFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AssertionThreadLocalFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AssertionThreadLocalFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+
+	<!-- 自动根据单点登录的结果设置本系统的用户信息 -->
+	<filter>
+		<filter-name>AutoSetUserAdapterFilter</filter-name>
+		<filter-class>com.whty.cms.web.common.filter.PortalAutoSetUserAdapterFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutoSetUserAdapterFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AutoSetUserAdapterFilter</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<!-- ======================== 单点登录配置结束 ======================== -->
+	
+	<!-- 未受保护资源过滤器 -->
+	<filter>
+		<filter-name>UnprotectedResourceAuthFilter</filter-name>
+		<filter-class>com.whty.cms.web.common.filter.UnprotectedResourceAuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UnprotectedResourceAuthFilter</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	
+	<!-- listener -->
+	<listener>
+		<listener-class>com.whty.framework.web.WebAppListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+
+	<!-- front controller servlet -->
+	<servlet>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:webmvc-config.xml</param-value>
+		</init-param>
+	</servlet>
+	<!-- servlet mapping -->
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+
+	<!-- welcome file -->
+	<welcome-file-list>
+		<welcome-file>resourceHome.html</welcome-file>
+	</welcome-file-list>
+
+	<!-- session超时定义,单位为分钟 -->
+	<session-config>
+		<session-timeout>-1</session-timeout>
+	</session-config>
+	
+	<!-- 自定义标签 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/cms-tags</taglib-uri>
+			<taglib-location>/WEB-INF/tld/cms.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<!-- 出错页面定义 -->
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403.html</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/500.html</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/503.html</location>
+	</error-page>
+</web-app>

@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="model/test" template="/WEB-INF/views/model/test.jsp"/>
+	
+	<!-- 网站默认布局 -->
+	<definition name="topicLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="403" template="/WEB-INF/views/common/403.jsp"/>
+	<definition name="404" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/common/404.jsp"/>
+	</definition>
+	<definition name="500" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/common/500.jsp"/>
+	</definition>
+	<definition name="iframe500" template="/WEB-INF/views/common/iframe500.jsp"/>
+	<definition name="503" template="/WEB-INF/views/common/503.jsp"/>
+	
+	<!-- 资源首页布局 -->
+	<definition name="resHomeLayout" template="/WEB-INF/views/tiles/resHomeLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="resourceBody" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<!-- 空间布局 -->
+	<definition name="zoneLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/zoneheader.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/zonefooter.jsp"/>
+	</definition>
+	<!-- 个人发布列表布局(访客进入页面) -->
+	<definition name="visitorLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/visitorHeader.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/visitorFooter.jsp"/>
+	</definition>
+	<!-- 年级布局 -->
+	<definition name="classLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/classHeader.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/zonefooter.jsp"/>
+	</definition>
+	
+	<!-- 学校布局 -->
+	<definition name="schoolLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/schoolHeader.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/zonefooter.jsp"/>
+	</definition>
+	
+	<!-- 社区布局 -->
+	<definition name="communityLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/communityHeader.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<!-- 微课布局 -->
+	<definition name="weikeLayout" template="/WEB-INF/views/tiles/weiKeLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="resourceBody" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<!-- 社区产品详情页 -->
+	<definition name="communityDetail" extends="communityLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/communityDetail.jsp"/>
+	</definition>
+	
+	<!-- 资源中心首页 -->
+	<definition name="resourceHome*" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/general/{1}ResHome.asp"/>
+	</definition>
+	
+	<!-- 教师资源排行列表页 -->
+	<definition name="product/teacherResTopList" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/teacherResTopList.jsp"/>
+	</definition>
+	
+	<!-- 学校资源排行列表页 -->
+	<definition name="product/schoolResTopList" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/schoolResTopList.jsp"/>
+	</definition>
+	
+	<!-- 区域资源排行列表页 -->
+	<definition name="product/areaResTopList" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/areaResTopList.jsp"/>
+	</definition>
+	
+	<!-- 发布资源分类查询页 -->
+	<definition name="product/resourceClassifyList" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/resourceClassifyList.jsp"/>
+	</definition>
+	
+	<!-- 教材维度检索页 -->
+	<definition name="product/teachResListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/teachResListPageNew.jsp"/>
+	</definition>
+	
+	<!-- 上海电教馆定制页面 -->
+	<definition name="product/teachResListPageForDemo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/teachResListPageForDemo.jsp"/>
+	</definition>
+	
+	<!-- 知识点维度检索页 -->
+	<definition name="product/knowPointResListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/knowPointResListPage.jsp"/>
+	</definition>
+	
+	<!-- 试卷维度检索页 -->
+	<definition name="product/examResListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/examResListPage.jsp"/>
+	</definition>
+	
+	<!-- 个人网盘页 -->
+	<definition name="netdisk/myNetdisk1" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myNetdisk1.jsp" />
+	</definition>
+	
+	<!-- 个人网盘页 -新 -->
+	<definition name="netdisk/myNetdisk1_new" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myDoc_new.jsp" />
+	</definition>
+
+	<!-- 产品收藏 -->
+	<definition name="netdisk/procollect" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/procollect.jsp" />
+	</definition>
+	
+	<!-- 个人网盘老师上报产品列表查询(定制化需求) -->
+	<definition name="netdisk/netdiskreport" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/report/netdiskreport.jsp" />
+	</definition>
+	
+	<!-- 产品收藏和下载 -->
+	<definition name="netdisk/proCollectAndDownLoadLog" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/procollectAndDownLoadLog.jsp" />
+	</definition>
+	
+	<!-- 我的发布 -->
+	<definition name="netdisk/myCatalogue" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myCatalogue.jsp" />
+	</definition>
+	<!-- 我的发布 -新-->
+	<definition name="netdisk/myCatalogue_new" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myCatalogue_new.jsp" />
+	</definition>
+	
+	<!-- 直接发布 -->
+	<definition name="netdisk/directCatalogue" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/directCatalogue.jsp" />
+	</definition>
+	
+	<!-- 发布修改 -->
+	<definition name="netdisk/modCatalogue" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/modCatalogue.jsp" />
+	</definition>
+	
+	<!--我的产品 -->
+	<definition name="netdisk/myProduct" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myProduct.jsp" />
+	</definition>
+	
+	<!--已上报资源 -->
+	<definition name="netdisk/resReportList" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/resReportList.jsp" />
+	</definition>
+	
+	<!-- 已下载资源 -->
+	<definition name="netdisk/downloadLogList" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/downloadLogList.jsp" />
+	</definition>
+	
+	<!-- 老师打包产品 -->
+	<definition name="netdisk/packProduct1" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/packProduct1.jsp" />
+	</definition>
+	
+	<!-- 老师上报产品(个人网盘定制化需求) -->
+	<definition name="netdisk/reportNetDisk" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/report/reportNetDisk.jsp" />
+	</definition>
+	
+	<!-- 老师上报产品(教材资源定制化需求) -->
+	<definition name="netdisk/reportTextbook" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/report/reportTextbook.jsp" />
+	</definition>
+	
+	<!-- 个人发布 -->
+	<definition name="netdisk/myPubAll" extends="visitorLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myPubAll.jsp" />
+	</definition>
+	
+	<!-- 个人网盘上传 -->
+	<definition name="netdisk/uploadNetdisk" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/uploadNetdisk.jsp" />
+	</definition>
+	
+	<!-- 个人资源上报 -->
+	<definition name="netdisk/myResReport" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myResReport.jsp" />
+	</definition>
+	
+	<!-- 资源编目 -->
+	<definition name="netdisk/myResCatalogue" template="/WEB-INF/views/resource/myResReport.jsp"/>
+	
+	<!-- 个人网盘资源选择列表    内嵌页面 -->
+	<definition name="netdisk/myNetDiskResList" template="/WEB-INF/views/resource/myNetDiskResList.jsp"/>
+	
+	<!-- 名师资源选择列表    内嵌页面 -->
+	<definition name="netdisk/myNetDiskfolderList" template="/WEB-INF/views/resource/myNetDiskfolderList.jsp"/>
+	
+	<!-- 默认布局 -->
+	<definition name="defaultLayout" template="/WEB-INF/views/tiles/defaultLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<!-- 视频课时详情页 -->
+	<definition name="videoLessonDetail" extends="defaultLayout">
+		<put-attribute name="body" value="/WEB-INF/views/videoCourse/videoLessonDetail.jsp"/>
+	</definition>
+	
+	<!-- 公共资源库列表页 -->
+	<definition name="productListDemo" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/productListDemo.jsp"/>
+	</definition>
+	
+	<!-- 个人资源库首页 -->
+	<definition name="persHomePage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/persHomePage.asp"/>
+	</definition>
+	<!-- 机构资源库首页 -->
+	<definition name="orgHomePage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/orgHomePage.asp"/>
+	</definition>
+	<!-- 资源搜索页面 -->
+	<definition name="resSearchPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resSearchPage.jsp"/>
+	</definition>
+	<!-- (页面改版)资源搜索页面 -->
+	<definition name="resSearchNewPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resSearchNewPage.jsp"/>
+	</definition>
+	<!-- 资源列表页面 -->
+	<definition name="resListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resListPage.jsp"/>
+	</definition>
+	
+	<!-- 资源详情页 -->
+	<definition name="resDetailInfoPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resDetailInfo_.jsp"/>
+	</definition>
+	
+	<!-- 资源列表页 -->
+	<definition name="resportal/resource/reslist" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/resList.jsp" />
+	</definition>
+	
+		<!-- 考试资源列表页 -->
+	<definition name="resportal/resource/examreslist" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/examreslist.jsp" />
+	</definition>
+	
+		<!-- 考试资源详情页-->
+	<definition name="resportal/resource/examdetail" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/examdetail.jsp" />
+	</definition>
+	
+	<!-- 机构资源详情页-->
+	<definition name="resportal/resource/orgreslist" template="/WEB-INF/views/resource/orgreslist.jsp"/>
+	
+		<!-- 学校资源下载设置页-->
+	<definition name="resportal/resource/schoolsetdwright" template="/WEB-INF/views/resource/schoolSetDWRight.jsp"/>
+
+	<!-- 学校资源库详情页-->
+	<definition name="resportal/resource/schoolreslist" template="/WEB-INF/views/resource/schoolreslist.jsp"/>
+	
+	<!-- 学校资源上传详情页-->
+	<definition name="resportal/resource/schoolresupload" extends="schoolLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/schoolresupload.jsp" />
+	</definition>
+	
+	<!-- 社区资源上传详情页-->
+	<definition name="communityUpload" extends="communityLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/communityUpload.jsp" />
+	</definition>
+	<!--  
+	<definition name="resportal/resource/schoolresupload" template="/WEB-INF/views/resource/schoolresupload.jsp"/>
+	-->
+	
+	<!-- 学校资源审核详情页-->
+	<definition name="resportal/resource/schoolresreview" template="/WEB-INF/views/resource/schoolresreview.jsp"/>
+	
+	<!-- 学校资源上报资源列表详情页-->
+	<definition name="resportal/resource/schoolReportRes" template="/WEB-INF/views/resource/schoolReportRes.jsp"/>
+	
+    <!-- 个人资源详细-->
+	<definition name="netdisk/eduDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/eduDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 班级资源详细-->
+	<definition name="netdisk/classDetailInfo" extends="classLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/classDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 应用班级资源详细-->
+	<definition name="netdisk/classYYDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/classYYDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 学校资源详细(管理员)-->
+	<definition name="netdisk/schoolDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/schoolDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 学校资源详细(普通用户)-->
+	<definition name="netdisk/schoolCommonDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/schoolCommonDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 班级网盘资源 -->
+	<definition name="netdisk/classNetdisk" template="/WEB-INF/views/resource/classNetdisk.jsp"/>
+	
+	<!-- 班级网盘资源APP -->
+	<definition name="netdisk/classNetdiskApp" template="/WEB-INF/views/resource/class/app/classNetdisk.jsp"/>
+		
+	<!-- 老师,学生没有加入任何班级  信息展示页 -->
+	<definition name="netdisk/claMemberMsg" template="/WEB-INF/views/resource/class/app/claMemberMsg.jsp"/>
+	
+	<!-- 家长没有加入任何班级  信息展示页 -->
+	<definition name="netdisk/claOutMemberMsg" template="/WEB-INF/views/resource/class/app/claOutMemberMsg.jsp"/>
+	
+	<!-- 班级资源提交 -->
+	<definition name="netdisk/classResourceDetail" extends="classLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/classResourceDetail.jsp" />
+	</definition>
+	<!--<definition name="netdisk/classResourceDetail" template="/WEB-INF/views/resource/classResourceDetail.jsp"/>-->
+	
+	<!-- 学校导航->学校资源 -->
+	<definition name="resportal/resource/schoolres" template="/WEB-INF/views/resource/schoolres.jsp"/>
+	<!-- 资源首页上传页面-->
+	<definition name="resportal/resource/resUpload" template="/WEB-INF/views/resource/resUpload.jsp"/>
+	
+	<!-- 产品列表下的资源详情页 -->
+	<definition name="netdisk/resOfProductDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resOfProductDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 资源分享详情页 -->
+	<definition name="netdisk/resShareDetailInfo" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resShareDetailInfo.jsp" />
+	</definition>
+	
+	<!-- 取消链接资源分享页面 -->
+	<definition name="netdisk/noLinkOfresPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/noLinkOfresShareDetail.jsp" />
+	</definition>
+	
+	<!-- 取消产品页面 -->
+	<definition name="netdisk/noOfProductPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/noOfProductDetail.jsp" />
+	</definition>
+	
+	<!-- 资源分享提取码页面-->
+	<definition name="netdisk/resShareCheckPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resShareCheckPage.jsp" />
+	</definition>
+	<!-- 视频播放页面		内嵌页面 -->
+	<definition name="goPreviewPage" template="/WEB-INF/views/resource/goPreviewPage.jsp"/>
+	
+	<!-- 视频播放页面CkPlayer		内嵌页面 -->
+	<definition name="goCkPlayerPage" template="/WEB-INF/views/resource/goCkPlayerPage.jsp"/>
+	
+	<!-- 预览播放页面		内嵌页面 -->
+	<definition name="goPlayPage" template="/WEB-INF/views/resource/previewPage.jsp"/>
+	
+	<definition name="goPlayPageByFid" template="/WEB-INF/views/resource/goPlayPageByFid.jsp"/>
+	
+	<!-- 名师工作室文件夹列表 （内嵌页面）-->
+	<definition name="netdisk/teacherStudioDisk" template="/WEB-INF/views/resource/teacherStudioDisk.jsp"/>
+	
+	<!-- 我的公开 -->
+	<definition name="netdisk/MyPublish" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myPublish.jsp" />
+	</definition>
+	
+   <!-- 个人资源展示主页 -->
+	<definition name="netdisk/publishAll" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/publishAll.jsp" />
+	</definition>
+	
+	 <!-- 学校资源库产品详情页 -->
+	<definition name="proDetailInfo" extends="schoolLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/proDetailInfo.jsp"/>
+	</definition>
+	
+   <!-- 学校资源库产品详情页(站点导航) -->
+	<definition name="proDetail" extends="schoolLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/proDetail.jsp"/>
+	</definition>
+	
+	 <!-- 学校资源库产品列表页-->
+	<definition name="resportal/resource/schoolProlist" template="/WEB-INF/views/resource/schoolProlist.jsp"/>
+	
+	<!-- 教育云资源(校内老师同步且审核通过的资源)-->
+	<definition name="resportal/resource/schoolYunlist" template="/WEB-INF/views/resource/schoolYunlist.jsp"/>
+	
+	<!-- 学校资源库审核列表-->
+	<definition name="resportal/resource/schoolReport" template="/WEB-INF/views/resource/report/schoolReport.jsp"/>
+	
+	<!-- 学校资源库老师发布资源排行列表-->
+	<definition name="resportal/resource/publishResRank" template="/WEB-INF/views/resource/publishResRank.jsp"/>
+	
+	<!-- 资源详情页 -->
+	<definition name="netdisk/resDetail" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/resDetail.jsp"/>
+	</definition>
+	
+	 <!-- 我的分享页面(本用户可见) -->
+	<definition name="netdisk/myPubShare" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myPubShare.jsp" />
+	</definition>
+	
+    <!-- 我的分享个人资源展示页面(其他用户可见) -->
+	<definition name="netdisk/myPubShareAll" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myPubShareAll.jsp" />
+	</definition>
+	
+	 <!-- 我的分享页面(本用户可见)-新 -->
+	<definition name="netdisk/myPubShare_new" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myPubShare_new.jsp" />
+	</definition>
+	<!-- 我的教材资源 -->
+	<definition name="netdisk/myTextbookFolder" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/myTextbookFolder.jsp" />
+	</definition>
+	<!-- 产品修改页面 -->
+	<definition name="netdisk/modProduct" extends="zoneLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/resource/modProduct.jsp" />
+	</definition>
+	
+	<!-- 学校访客列表页面 -->
+	<definition name="resportal/resource/schoolPro" template="/WEB-INF/views/resource/schoolPro.jsp"/>
+	
+	<!-- 一师一课布局 -->
+	<definition name="oneClassLayout" template="/WEB-INF/views/tiles/resHomeLayout.jsp">
+		<put-attribute name="title" value="点滴教育资源公共服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/oneClassHeader.jsp" />
+		<put-attribute name="resourceBody" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	<!-- 一师一课_优课展示 列表页面 -->
+	<definition name="goOneClassPage" extends="oneClassLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/oneclass/goOneClassPage.jsp"/>
+	</definition>
+	
+	<!-- 资源征集页面 -->
+	<definition name="collectPro" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/collectPro.jsp"/>
+	</definition>
+	
+	<!-- 个人网盘目录树		内嵌页面 -->
+	<definition name="netdisk/getStudioDirTree" template="/WEB-INF/views/resource/tree/getStudioDirTree.jsp"/>
+	
+	<!-- 资源征集详情页面 -->
+	<definition name="collectProDetail" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/collectProDetail.jsp"/>
+	</definition>
+	
+	<!-- 国家资源列表页面 -->
+	<definition name="resNationListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/resNationListPage.jsp"/>
+	</definition>
+	
+	<!-- 天喻资源列表页面 -->
+	<definition name="resTyListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/resTyListPage.jsp"/>
+	</definition>
+	
+	<!-- 天喻试卷资源列表页面 -->
+	<definition name="examResTyListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/examResTyListPage.jsp"/>
+	</definition>
+	
+	<!-- 本区域资源列表页面  -->
+	<definition name="resLocalListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/resLocalListPage.jsp"/>
+	</definition>
+	
+	<!-- 本区域试卷资源列表页面 -->
+	<definition name="examResLocalListPage" extends="resHomeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/product/examResLocalListPage.jsp"/>
+	</definition>
+	
+	<definition name="resportal/resource/weiKeList" extends="weikeLayout">
+		<put-attribute name="resourceBody" value="/WEB-INF/views/resource/weike/weikeList.jsp"/>
+	</definition>
+	
+	<!-- 云盘我的资源 -->
+	<definition name="course/courseMenuList" template="/WEB-INF/views/resource/course/courseMenuList.jsp"/>
+	
+	<!-- 云盘共享资源 -->
+	<definition name="course/courseShareList" template="/WEB-INF/views/resource/course/courseShareList.jsp"/>
+	
+	<!-- 云盘精品资源 -->
+	<definition name="course/courseCollectList" template="/WEB-INF/views/resource/course/courseCollectList.jsp"/>
+	
+	<!-- 云盘我的文档 -->
+	<definition name="course/courseNetDisk" template="/WEB-INF/views/resource/course/courseNetDisk.jsp"/>
+	
+	<!-- 云盘我上传的资源列表 -->
+	<definition name="course/courseUploadList" template="/WEB-INF/views/resource/course/courseUploadList.jsp"/>
+	
+	<!-- 云盘我收藏的资源列表 -->
+	<definition name="course/courseCollectResList" template="/WEB-INF/views/resource/course/courseCollectResList.jsp"/>
+	
+	<!-- 云盘我分享的资源列表 -->
+	<definition name="course/courseShareResList" template="/WEB-INF/views/resource/course/courseShareResList.jsp"/>
+	
+	<!-- 根据FID预览内嵌画面 -->
+	<definition name="viewByFid" template="/WEB-INF/views/resource/course/previewByFid.jsp"/>
+	
+</tiles-definitions>  

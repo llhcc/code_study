@@ -1,0 +1,35 @@
+List<String> chapterIdList = resourceVo.getChapterIdList();
+if (chapterIdList != null && chapterIdList.size() > 0) {
+	String sql = "insert into T_RES_CHAPTER (RES_ID, CHAPTER_ID) values (?,?)";
+	List<Object[]> batchArgs = CollectionUtils.newArrayList();
+	for (String chapterId : chapterIdList) {
+		if (StringUtils.isNotEmpty(chapterId)) {
+			Object[] arg = new Object[]{resId, chapterId};
+			batchArgs.add(arg);
+		}
+	}
+	jdbcTemplate.batchUpdate(sql, batchArgs);
+}
+----------------------------------------------------------------------------
+String sql = "insert into T_RES_CLASSIFICATION (RES_ID, CLASSIFICATION_ID) values (?,?)";
+jdbcTemplate.update(sql, new Object[]{resourceVo.getResId(), resClassId});
+----------------------------------------------------------------------------
+String fileIdSql = "select url as url,cmsft as cmsft from t_platform_code where status = '0' and platform_code = '" +platformCode+ "'";
+Map<String,Object> fileIdMap = null;
+try{
+	fileIdMap = jdbcTemplate.queryForMap(fileIdSql);
+}catch(EmptyResultDataAccessException e){
+	fileIdMap = null;
+}
+----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+

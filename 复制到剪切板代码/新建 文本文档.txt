@@ -1,0 +1,25 @@
+if($.browser.version==6.0||$.browser.version==7.0||$.browser.version==8.0){
+	$('#d_clip_button').bind("click",function(){
+		var code= $("#shareId").text()+"&∑√Œ √‹¬Î£∫"+$('.qjf_wzblue').text();
+		$("#copySuccess").attr("style","color:red;");
+		window.clipboardData.setData("Text",code);
+	});
+}else{
+	//¥•∑¢ZeroClipboard
+	$(".q_a4").click(function(){
+		$("#d_clip_button").click();
+	});
+	
+	$("#d_clip_button").click(function(){
+		ZeroClipboard.setMoviePath( "<%=jspconfigUrl%>common/ZeroClipboard.swf" ); 
+		$('#d_clip_button').zclip({
+			path: "<%=jspconfigUrl%>common/ZeroClipboard.swf",
+			copy: function(){
+			   return $("#shareId").text()+"&∑√Œ √‹¬Î£∫"+$('.qjf_wzblue').text();
+			},
+			afterCopy:function(){
+				$("#copySuccess").attr("style","color:red;");
+			}
+		});
+	});
+}

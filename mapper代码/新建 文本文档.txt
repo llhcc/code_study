@@ -1,0 +1,208 @@
+<sql id="selectClauseProColAndDownLoadLog">
+		select * from (
+		(select (case
+		  when
+		    t.down_type='1' then
+		    (select product_name from t_product where product_code=t.product_code)
+		    else
+		      (select t14.title from t_resource t14 where t14.res_id=t.res_id)
+		      end) as title,
+		   (case
+		     when
+		       t.down_type='1' then
+		        (case
+		          when
+		            (select count(1) from t_prod_res t3 where t3.product_code=t.product_code) > 1
+		            then
+		              (select t7.file_length from t_product t7 where t7.product_code=t.product_code)
+		            else
+		             (select t6.file_length from t_attach_file t6 where t6.fid=
+		              (select t5.fid from t_resource t5 where t5.res_id=
+		               (select t4.res_id from t_prod_res t4 where t4.product_code=t.product_code)))
+		              end)
+		       else
+		         (case
+		           when
+		             (select count(*) from t_resource t8 where t8.res_id=t.res_id) > 0
+		             then
+		               (select t1.file_length from t_attach_file t1 where t1.fid=
+		                 (select t2.fid from t_resource t2 where t2.res_id=t.res_id))
+		              else
+		                (case
+		                  when
+		                    t.file_length !='' and t.file_length is not null then
+		                    to_number(t.file_length)
+		                   else
+		                     0
+		                 end)
+		                end)
+		         end) as fileLength,
+		    (case
+		      when
+		        t.down_type='1' then
+		         (case
+		           when
+		             (select count(1) from t_prod_res t10 where t10.product_code=t.product_code) > 1
+		             then 'file'
+		           else
+		             (select t13.file_ext from t_attach_file t13 where t13.fid=
+		              (select t12.fid from t_resource t12 where t12.res_id=
+		              (select t11.res_id from t_prod_res t11 where t11.product_code=t.product_code)))
+		            end
+		          )
+		        else
+		          (select t9.file_ext from t_attach_file t9 where t9.fid=
+		            (select t8.fid from t_resource t8 where t8.res_id=t.res_id))
+		            end) as fileExt,
+		     (case
+		       when
+		         t.down_type='1' then
+		              <!--为解决数据问题，特殊处理  -->
+		           <!-- (case
+		             when
+		                (select count(t19.classification_id) from t_res_classification t19 where t19.classification_id='jl12' and t19.res_id=
+		               (select t18.res_id from t_prod_res t18 where t18.product_code=t.product_code and rownum <![CDATA[< 2]]>)) > 0
+		               then 'jl12'
+		             else
+		               (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+		               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+		             end) -->
+		             <if test="resType != null and resType != ''">
+		               (case
+		                 when
+			               (select count(1) from t_prod_res t20 where t20.product_code=t.product_code) > 1
+			               then 'jl11'
+			             when
+			                (select count(t19.classification_id) from t_res_classification t19 where t19.classification_id=#{resType} and t19.res_id=
+			               (select t18.res_id from t_prod_res t18 where t18.product_code=t.product_code and rownum <![CDATA[< 2]]>)) > 0
+			               then #{resType}
+			             else
+			               (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+			               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+			             end)
+		             </if>
+		             <if test="resType == null or resType == ''">
+		                (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+		               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+		             </if>
+		       else
+		         (select t17.classification_id from t_res_classification t17 where rownum <![CDATA[< 2]]> and t17.res_id=
+		          (select t16.res_id from t_resource t16 where t16.res_id=t.res_id))
+		       end) as resType,
+		    t.create_time as createTime,t.product_code as productCode,t.res_id as resId,'1' as status,t.down_type as collectionType,t.pk_id || '_down' as id
+		   from t_download_log t 
+		   <where>
+		            <if test="userId != null and userId != ''">
+		                t.user_id = #{userId}
+		            </if>
+		   </where>
+		   )
+		   union all
+		   (
+		   select (case
+		  when
+		    t.COLLECTION_TYPE='1' then
+		    (select product_name from t_product where product_code=t.product_code)
+		    else
+		      (select t14.title from t_resource t14 where t14.res_id=t.res_id)
+		      end) as title,
+		   (case
+		     when
+		       t.COLLECTION_TYPE='1' then
+		        (case
+		          when
+		            (select count(1) from t_prod_res t3 where t3.product_code=t.product_code) > 1
+		            then
+		              (select t7.file_length from t_product t7 where t7.product_code=t.product_code)
+		            else
+		             (select t6.file_length from t_attach_file t6 where t6.fid=
+		              (select t5.fid from t_resource t5 where t5.res_id=
+		               (select t4.res_id from t_prod_res t4 where t4.product_code=t.product_code)))
+		              end)
+		       else
+		         (case
+		           when
+		             (select count(*) from t_resource t8 where t8.res_id=t.res_id) > 0
+		             then
+		               (select t1.file_length from t_attach_file t1 where t1.fid=
+		                 (select t2.fid from t_resource t2 where t2.res_id=t.res_id))
+		              else
+		                (case
+		                  when
+		                    t.file_length !='' and t.file_length is not null then
+		                    to_number(t.file_length)
+		                   else
+		                     0
+		                 end)
+		                end)
+		         end) as fileLength,
+		    (case
+		      when
+		        t.COLLECTION_TYPE='1' then
+		         (case
+		           when
+		             (select count(1) from t_prod_res t10 where t10.product_code=t.product_code) > 1
+		             then 'file'
+		           else
+		             (select t13.file_ext from t_attach_file t13 where t13.fid=
+		              (select t12.fid from t_resource t12 where t12.res_id=
+		              (select t11.res_id from t_prod_res t11 where t11.product_code=t.product_code)))
+		            end
+		          )
+		        else
+		          (select t9.file_ext from t_attach_file t9 where t9.fid=
+		            (select t8.fid from t_resource t8 where t8.res_id=t.res_id))
+		            end) as fileExt,
+		     (case
+		       when
+		         t.COLLECTION_TYPE='1' then
+		         <!--为解决数据问题，特殊处理  -->
+		          <!--  (case
+		             when
+		                (select count(t19.classification_id) from t_res_classification t19 where t19.classification_id='jl12' and t19.res_id=
+		               (select t18.res_id from t_prod_res t18 where t18.product_code=t.product_code and rownum <![CDATA[< 2]]>)) > 0
+		               then 'jl12'
+		             else
+		               (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+		               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+		             end) -->
+		             <if test="resType != null and resType != ''">
+		               (case
+		                 when
+			               (select count(1) from t_prod_res t20 where t20.product_code=t.product_code) > 1
+			               then 'jl11'
+			             when
+			                (select count(t19.classification_id) from t_res_classification t19 where t19.classification_id=#{resType} and t19.res_id=
+			               (select t18.res_id from t_prod_res t18 where t18.product_code=t.product_code and rownum <![CDATA[< 2]]>)) > 0
+			               then #{resType}
+			             else
+			               (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+			               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+			             end)
+		             </if>
+		             <if test="resType == null or resType == ''">
+		                (select t15.classification_id from t_res_classification t15 where rownum <![CDATA[ < 2]]>  and t15.res_id=
+		               (select t14.res_id from t_prod_res t14 where t14.product_code=t.product_code and rownum <![CDATA[< 2]]>))
+		             </if>
+		       else
+		         (select t17.classification_id from t_res_classification t17 where rownum <![CDATA[< 2]]> and t17.res_id=
+		          (select t16.res_id from t_resource t16 where t16.res_id=t.res_id))
+		       end) as resType,
+		    t.create_time as createTime,t.product_code as productCode,t.res_id as resId,'2' as status,t.collection_type as collectionType,t.COLLECTION_ID || '_proCol' as id
+		   from t_collection t 
+		   <where>
+		            <if test="userId != null and userId != ''">
+		                t.user_id = #{userId}
+		            </if>
+		   </where>)
+		   ) e 
+		   <where>
+			   <if test="title != null and title != ''">
+			     lower(e.title) like lower('%' || #{title} || '%')
+			   </if>
+			   <if test="resType != null and resType != ''">
+			     AND e.resType = #{resType}
+			   </if>
+		   </where>
+		   order by e.createTime desc
+    </sql>

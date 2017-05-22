@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+<resource>
+	<!-- 资源标题 -->
+	<title>安徽省蚌埠市2011-2012学年七年级政治下学期期中联考试题 人教新课标版.doc</title>
+	
+	<!-- 资源关键字 -->
+	<keyword>安徽省蚌埠市2011-2012学年七年级政治下学期期中联考试题 人教新课标版安徽期中试题新人教版初中七年级政治</keyword>
+	
+	<!-- 资源简介 -->
+	<intro>安徽省蚌埠市2011-2012学年七年级政治下学期期中联考试题 人教新课标版安徽期中试题新人教版初中七年级政治</intro>
+	
+	<!-- 资源形式: 1=实体资源; 2=网络资源 -->
+	<resForm>1</resForm>
+	
+	<!-- 网络资源URL，如果资源形式是网络资源，该字段必填 -->
+	<url>http://www.baidu.com/</url>
+	
+	<!-- 学段ID -->
+	<periodId>xx</periodId>
+	
+	<!-- 学科ID -->
+	<subjectId>jcsub01</subjectId>
+	
+	<!-- 教材版本ID -->
+	<editionId>bb03</editionId>
+	
+	<!-- 年级ID -->
+	<gradeId>3</gradeId>
+	
+	<!-- 册别ID -->
+	<volumeId>V008</volumeId>
+	
+	<!-- 教材ID -->
+	<textbookId>17055</textbookId>
+	
+	<!-- 章节ID -->
+	<chapterIdList>
+		<value>28428</value>
+	</chapterIdList>
+	
+	<!-- 资源类型ID -->
+	<resTypeIdList>
+		<value>jxsc</value>
+		<value>tx</value>
+	</resTypeIdList>
+	
+	<!-- 用户ID -->
+	<userId>24a574c498da47caae32074c45eba451</userId>
+	
+	<!-- 用户名称 -->
+	<userName>武汉天喻信息产业股份有限公司</userName>
+	
+	<!-- 用户账号 -->
+	<userAccount>CP0220766</userAccount>
+	
+	<!-- 用户所属机构ID -->
+	<orgId>F259F9C0E8087692E04010AC73D40970</orgId>
+	
+	<!-- 用户所属机构名称 -->
+	<orgName>武汉教育局</orgName>
+</resource>
+</resources>

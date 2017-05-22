@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	url: 接口方法名
+	name: 需要验证的属性名
+	maxLength: 最大长度,如果最大长度小于1就不验证
+	isNull: 是否必填项，1:必填; 0:可选
+	type: 属性名的类型，支持String; Integer; Long; String[]; Integer[]; Long[]
+-->
+<checkParams>
+	<checkParam url="/rest/person/login">
+		<parameter name="id" type="Integer" maxLength="-1" isNull="1"/>
+		<parameter name="name" type="String" maxLength="100" isNull="1"/>
+	</checkParam>
+	
+	<checkParam url="/rest/person/profile">
+		<parameter name="id" type="Integer" maxLength="-1" isNull="1"/>
+		<parameter name="name" type="String" maxLength="100" isNull="1"/>
+	</checkParam>
+</checkParams>

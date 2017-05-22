@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+        <bean id="homeGeneralJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        	<property name="jobClass" value="com.whty.cms.web.job.HomeGeneralJob"></property>
+        	<property name="durability" value="true"></property>
+        </bean>
+        <!-- 定义触发时间 -->
+        <bean id="doGeneral" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+			<property name="jobDetail" ref="homeGeneralJob"></property>
+			<!-- 	每5分钟调用一次 -->
+			<property name="cronExpression" value="0 0/5 * * * ?"></property>
+        </bean>
+        <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+        <bean id="startQuertz" lazy-init="false" autowire="no" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+            <property name="triggers">
+                <list>
+                    <ref bean="doGeneral"/>
+                </list>
+            </property>
+        </bean>
+    
+</beans>

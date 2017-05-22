@@ -1,0 +1,10 @@
+<!-- IP访问过滤器,测试完成后取消该过滤器 -->
+
+	<filter>
+		<filter-name>IPAccessFilter</filter-name>
+		<filter-class>com.whty.cms.common.filter.IPAccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>IPAccessFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>

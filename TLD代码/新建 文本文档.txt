@@ -1,0 +1,13 @@
+<%@ taglib uri="/cms-tags" prefix="cms" %>
+
+<cms:sqlOptions sqlName="SQL_FORMAT"/>
+
+
+web.xml
+<!-- 自定义标签 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/cms-tags</taglib-uri>
+			<taglib-location>/WEB-INF/tld/cms.tld</taglib-location>
+		</taglib>
+	</jsp-config>

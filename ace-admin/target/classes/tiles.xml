@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="model/test" template="/WEB-INF/views/model/test.jsp"/>
+	
+	<!-- 网站默认布局 -->
+	<definition name="topicLayout" template="/WEB-INF/views/tiles/topicLayout.jsp">
+		<put-attribute name="title" value="llh服务平台"/>
+		<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="breadcrumbs" value="/WEB-INF/views/tiles/breadcrumbs.jsp"/>
+		<put-attribute name="topicMenu" value="/WEB-INF/views/tiles/topicMenu.jsp"/>
+		<put-attribute name="topicList" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp"/>
+	</definition>
+	
+	<definition name="index" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/index.jsp"/>
+	</definition>
+	
+	<definition name="typography" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/typography.jsp"/>
+	</definition>
+	
+	<definition name="elements" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/elements.jsp"/>
+	</definition>
+	
+	<definition name="buttons" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/buttons.jsp"/>
+	</definition>
+	
+	<definition name="treeview" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/treeview.jsp"/>
+	</definition>
+	
+	<definition name="jqueryUi" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/jquery-ui.jsp"/>
+	</definition>
+	
+	<definition name="tables" extends="topicLayout">
+		<put-attribute name="topicList" value="/WEB-INF/views/tables.jsp"/>
+	</definition>
+	<!-- <definition name="index" template="/WEB-INF/views/index.jsp"/> -->
+	
+	
+</tiles-definitions>  

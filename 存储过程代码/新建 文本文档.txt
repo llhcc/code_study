@@ -1,0 +1,185 @@
+create or replace procedure resCreateTime
+is
+t_count int;
+cursor cur1 is
+ select e.dir_id as dir_id from t_res_owner e where e.dir_id in (select e.dir_id from t_res_owner e where e.create_time is null);
+begin
+  t_count := 0;
+  for record in cur1 loop
+   t_count := t_count + 1;
+   update t_res_owner t set t.create_time = to_date('2014-09-01 00:00:00','yyyy-MM-dd hh24:mi:ss')+ t_count/24/60/60 where t.dir_id = record.dir_id;
+   commit;
+  end loop;
+end;
+
+------------------------------------------------------------------------------------
+create or replace procedure updatefilesize
+is
+v_filesize varchar2(30);
+cursor cur1 is 
+    select fid,file_length from t_attach_file where file_size is null ; 
+begin
+    for record in cur1 loop
+        if(record.file_length < 1024) then
+            v_filesize := round(record.file_length)||'B';
+        elsif(record.file_length < 1024 * 1024) then
+            v_filesize := round(record.file_length/1024,2)||'KB';
+        elsif(record.file_length < 1024 * 1024 * 1024) then
+            v_filesize := round(record.file_length/(1024*1024),2)||'MB';
+        else
+            v_filesize := round(record.file_length/(1024*1024*1024),2)||'GB';
+        end if;
+        update t_attach_file set file_size=v_filesize where fid=record.fid;
+        commit;
+    end loop;
+end;
+---------------------------------------------------------------------------------------
+create or replace procedure delResOwnerData is
+--所有用户
+cursor users is
+select e.user_id from t_res_owner e where e.user_id is not null group by e.user_id;
+begin
+  for user in users loop
+    declare
+    cursor cur1 is
+     select e.dir_id,e.parent_id from t_res_owner e where e.parent_id is not null and e.parent_id !='0' and e.user_id=user.user_id;
+      begin
+        for record in cur1 loop
+            delete t_res_owner t where ((t.dir_id=record.parent_id and t.parent_id=record.dir_id) or t.dir_id=t.parent_id) and t.user_id=user.user_id;
+            commit;
+            end loop;
+       end;
+      --第一次删除
+      delete from t_res_owner t1 where t1.parent_id !='0' and t1.parent_id is not null and t1.parent_id not in(
+      select t.dir_id from t_res_owner t where t.user_id=user.user_id
+      ) and t1.user_id=user.user_id;
+      commit;
+      --第二次删除
+      --delete from t_res_owner t1 where t1.parent_id !='0' and t1.parent_id is not null and t1.parent_id not in(
+      --select t.dir_id from t_res_owner t where t.user_id=user.user_id
+     -- ) and t1.user_id=user.user_id;
+     -- commit;
+  end loop;
+end;
+----------------------------------------------------------------------------------------------
+create or replace procedure proce_folder is
+v_count integer;
+v_count_res integer;
+v_count_prod integer;
+cursor cur1 is select e.user_id as userId from t_textbook_folder e group by e.user_id;
+ begin
+   for record in cur1 loop
+     dbms_output.put_line('----------useId--start---'|| record.userId);
+    declare
+     cursor cur0 is select e0.folder_id as folderId0 from t_textbook_folder e0 where e0.user_id=record.userId and rownum < 2 order by e0.create_time;
+     begin
+      for record0 in cur0 loop
+       declare
+        cursor cur2 is select e1.chapter_id as chapterId,e1.folder_id as folderId,e1.folder_name as folderName1,e1.parent_id as parentId1,e1.create_time as createTime1 from t_textbook_folder e1 where e1.user_id=record.userId and e1.parent_id='0';
+        begin
+          for record1 in cur2 loop
+            declare
+             cursor cur3 is select e2.chapter_id as chapterId2 from t_textbook_folder e2 where e2.user_id=record.userId and e2.parent_id=record1.chapterId;
+             begin
+               for record2 in cur3 loop
+                 declare
+                 cursor cur4 is select e3.folder_id as folderId3,e3.folder_name as folderName,e3.parent_id as parentId,e3.chapter_id as chapterId3,e3.create_time as createTime3 from t_textbook_folder e3 where e3.user_id=record.userId start with e3.chapter_id=record2.chapterId2 connect by prior e3.chapter_id=e3.parent_id;
+                 begin
+                   for record3 in cur4 loop
+                     select count(*) into v_count from t_res_owner t where t.dir_id=record1.folderId || record3.chapterId3;
+                     if(v_count < 1) then
+                       insert into t_res_owner(dir_id,dir_name,parent_id,user_id,owner_type,is_folder,org_id,modify_time) values(record1.folderId || record3.chapterId3,record3.folderName,record1.folderId || record3.parentId,record.userId,'0','0','0000',record3.createTime3);
+                       commit;
+                       --dbms_output.put_line('----------3-----'|| record.userId);
+                     end if;
+                     select count(*) into v_count_res from t_resource t1 where t1.folder_id=record3.folderId3;
+                     if(v_count_res > 0) then
+                     declare
+                     cursor cur88 is select t11.title as title,t11.res_id as resId,t11.create_time as createTime11 from t_resource t11 where t11.folder_id=record3.folderId3;
+                     begin
+                       for record88 in cur88 loop
+                         select count(*) into v_count from t_res_owner t2 where t2.dir_id=record1.folderId || record88.resId;
+                         if(v_count < 1) then
+                           select count(*) into v_count_prod from t_product f1 where f1.user_id=record.userId and f1.status!='6' and f1.product_code in (select f.product_code from t_prod_res f where f.res_id=record88.resId);
+                           if(v_count_prod > 0) then
+                             insert into t_res_owner(dir_id,res_id,dir_name,parent_id,user_id,owner_type,is_folder,status,publish_status,org_id,modify_time) values(record1.folderId || record88.resId,record88.resId,record88.title,record1.folderId || record3.chapterId3,record.userId,'0','1','1','1','0000',record88.createTime11);
+                             commit;
+                           else
+                             insert into t_res_owner(dir_id,res_id,dir_name,parent_id,user_id,owner_type,is_folder,status,org_id,modify_time) values(record1.folderId || record88.resId,record88.resId,record88.title,record1.folderId || record3.chapterId3,record.userId,'0','1','1','0000',record88.createTime11);
+                             commit;
+                           end if;
+                         end if;
+                       end loop;
+                     end;
+                    end if;
+                   end loop;
+                 end;
+               end loop;
+               select count(*) into v_count from t_res_owner t3 where t3.dir_id=record1.folderId || record1.chapterId;
+               if(v_count < 1) then
+                 insert into t_res_owner(dir_id,dir_name,parent_id,user_id,owner_type,is_folder,org_id,modify_time) values(record1.folderId || record1.chapterId,record1.folderName1,record0.folderId0,record.userId,'0','0','0000',record1.createTime1);
+                 commit;
+                 --dbms_output.put_line('----------2-----'|| record.userId);
+               end if;
+               select count(*) into v_count_res from t_resource t4 where t4.folder_id=record1.folderId;
+                if(v_count_res > 0) then
+                declare
+                cursor cur99 is select t41.title as title,t41.res_id as resId,t41.create_time as createTime41 from t_resource t41 where t41.folder_id=record1.folderId;
+                begin
+                  for record99 in cur99 loop
+                    select count(*) into v_count from t_res_owner t5 where t5.dir_id=record1.folderId || record99.resId;
+                    if(v_count < 1) then
+                     select count(*) into v_count_prod from t_product f2 where f2.user_id=record.userId and f2.status!='6' and f2.product_code in (select f3.product_code from t_prod_res f3 where f3.res_id=record99.resId);
+                     if(v_count_prod > 0) then
+                       insert into t_res_owner(dir_id,res_id,dir_name,parent_id,user_id,owner_type,is_folder,status,publish_status,org_id,modify_time) values(record1.folderId || record99.resId,record99.resId,record99.title,record1.folderId || record1.chapterId,record.userId,'0','1','1','1','0000',record99.createTime41);
+                       commit;
+                     else
+                       insert into t_res_owner(dir_id,res_id,dir_name,parent_id,user_id,owner_type,is_folder,status,org_id,modify_time) values(record1.folderId || record99.resId,record99.resId,record99.title,record1.folderId || record1.chapterId,record.userId,'0','1','1','0000',record99.createTime41);
+                       commit;
+                     end if;
+                    end if;
+                  end loop;
+                end;
+                end if;
+             end;
+          end loop;
+        end;
+        select count(*) into v_count from t_res_owner t where t.dir_id=record0.folderId0;
+        if(v_count < 1) then
+          insert into t_res_owner(dir_id,dir_name,parent_id,user_id,owner_type,is_folder,org_id) values(record0.folderId0,'教材资源','0',record.userId,'0','0','0000');
+          commit;
+          --dbms_output.put_line('----------useId--end---'|| record.userId);
+        end if;
+      end loop;
+     end;
+   end loop;
+ end;
+-----------------------------------------------------------------------------------------------------
+create or replace procedure updatefilesize
+is
+v_filesize varchar2(30);
+cursor cur1 is 
+    select fid,file_length from t_attach_file where  length(substr(file_size,instr(file_size,'.')+1))  >4 and instr(file_size,'.') >0 ;
+begin
+    for record in cur1 loop
+        if(record.file_length < 1024) then
+            v_filesize := to_char(round(record.file_length),'fm9999990.0099') ||'B';
+        elsif(record.file_length < 1024 * 1024) then
+            v_filesize := to_char(round(record.file_length/1024,2),'fm9999990.0099') ||'KB';
+        elsif(record.file_length < 1024 * 1024 * 1024) then
+            v_filesize := to_char(round(record.file_length/(1024*1024),2),'fm9999990.0099') ||'MB';
+        else
+            v_filesize := to_char(round(record.file_length/(1024*1024*1024),2),'fm9999990.0099')||'GB';
+        end if;
+        update t_attach_file set file_size=v_filesize where fid=record.fid;
+        commit;
+    end loop;
+end;
+-------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+

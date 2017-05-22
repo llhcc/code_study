@@ -1,0 +1,10 @@
+ThreadPoolUtils.execute(new Runnable() {
+	public void run() {
+		try {
+			unitRestService.scanResCode(resCodeScan);
+			unitRestService.syncToNetdisk(netDisk);
+		} catch(Exception ex) {
+			LOGGER.error(ex.getMessage(), ex);
+		}
+	}
+});
